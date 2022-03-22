@@ -58,6 +58,23 @@ class BookingPage extends Component {
                             <option value="2" >{}</option>
                         </select>
                     </form>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <form onSubmit={this.onSubmit.bind(this)} action="create-profile.html">
+                        <select className="form-select bg-dark text-white p-2" name="service" onChange={this.onChange}>
+                            <option value="1" selected>Mens Hair Cut</option>
+                            <option value="2" >Womens Hair Cut</option>
+                            <option value="3" >Mens Perm</option>
+                            <option value="4" >Womens Perm</option>
+                            <option value="5" >Treatment</option>
+                        </select>
+                    </form>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <form onSubmit={this.onSubmit.bind(this)} action="create-profile.html">
+                        <select className="form-select bg-dark text-white p-2" name="designer" onChange={this.onChange}>
+                            <option value="1" selected>William</option>
+                            <option value="2" >Jane</option>
+                        </select>
+                    </form>
                 </div>
             </div>
         );
