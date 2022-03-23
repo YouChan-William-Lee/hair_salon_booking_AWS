@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 
 @Entity
+@Table(name = "staff")
 public class Staff implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

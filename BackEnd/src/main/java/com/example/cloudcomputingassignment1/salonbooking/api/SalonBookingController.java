@@ -1,7 +1,7 @@
-package com.example.cloudcomputingassignment1.salongbooking.api;
+package com.example.cloudcomputingassignment1.salonbooking.api;
 
-import com.example.cloudcomputingassignment1.salongbooking.app.SalonBookingAppService;
-import com.example.cloudcomputingassignment1.salongbooking.representation.SalongBookingRequest;
+import com.example.cloudcomputingassignment1.salonbooking.app.SalonBookingAppService;
+import com.example.cloudcomputingassignment1.salonbooking.representation.SalonBookingRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +20,7 @@ public class SalonBookingController {
     }
 
     @PostMapping("")
-    public ResponseEntity<?> save(@RequestBody SalongBookingRequest request) {
+    public ResponseEntity<?> save(@RequestBody SalonBookingRequest request) {
         salonBookingAppService.save(request);
         return new ResponseEntity<>(request, HttpStatus.OK);
     }
