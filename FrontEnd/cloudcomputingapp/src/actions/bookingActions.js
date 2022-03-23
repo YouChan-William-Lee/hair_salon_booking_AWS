@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const createBooking = (customer, history) => async dispatch => {
+export const createBooking = (newbooking, history) => async dispatch => {
     try {
         const res = await axios.post("https://cors-everywhere.herokuapp.com/http://bookmicroservice-env.eba-vvi3x9cs.ap-southeast-2.elasticbeanstalk.com/api/books/registerBooking", booking);
         history.push("/");

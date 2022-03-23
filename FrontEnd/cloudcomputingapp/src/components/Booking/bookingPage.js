@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
+import { Link } from "react-router-dom";
+import BookingPageService from "./bookingPageService"
+import "../../styleSheets/bookingPage.css"
 
 class BookingPage extends Component {
     constructor() {
         super();
 
         this.state = {
+            allSchedules: [],
+            selectedDate:'',
+            selectedDay:'',
             date: '',
             designer: '',
             service: '',
@@ -17,10 +23,6 @@ class BookingPage extends Component {
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-        let errors = this.state.errors;
-        const name = e.target.name;
-        const value = e.target.value;
-        this.setState({ errors, name: errors.name });
     }
 
     onSubmit(e) {
@@ -28,19 +30,28 @@ class BookingPage extends Component {
         const newBooking = {
             date: this.state.date,
             designer: this.state.designer,
-            service: this.state.service,
-            fee: this.state.fee
+            service: this.state.service
         };
         this.props.createNewBooking(newBooking, this.props.historyPath);
     }
 
+    componentDidMount() {
+        fetch("http://localhost:8080/salon/schedule").then((response) => response.json()).then(result => { this.setState({ allSchedules: result }) });
+    }
+
     render() {
         const months=["January","February","March","April","May","June","July","August","September","October","November","December"];
-        const days = ["Sunday", "Monday","Tuesday","Wednesday","Thursday","Firday","Saturday"]
-        var this_month = months[this.state.currentDate.getMonth()]
-        var this_date = this.state.currentDate.getDate()
-        var this_day = days[this.state.currentDate.getDay()]
-        var this_year = this.state.currentDate.getFullYear()
+        const days = ["Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        var this_date = this.state.currentDate.getDate();
+        var last_date_of_month = (new Date(this.state.currentDate.getFullYear(), this.state.currentDate.getMonth() + 1, 0)).getDate();
+        var datelist = [];
+        for (var i = this_date; i <= last_date_of_month; i++) {
+            let adddate = i + "/" +
+                months[this.state.currentDate.getMonth()] + "/" +
+                this.state.currentDate.getFullYear() + " " +
+                days[(this.state.currentDate.getDay() + i - this_date) % 7];
+            datelist.push(adddate);
+        }
         return (
             <div className="bookingpage">
                 <br />
@@ -51,31 +62,24 @@ class BookingPage extends Component {
                 <br />
                 <div className="d-flex justify-content-center my-3">
                     <form onSubmit={this.onSubmit.bind(this)} action="create-profile.html">
-                        <select className="form-select bg-dark text-white p-2" name="date" onChange={this.onChange}>
-                            <option value="1" selected>
-                                {this_date + "/" + this_month + "/" + this_year + " " + this_day}
-                            </option>
-                            <option value="2" >{}</option>
-                        </select>
-                    </form>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <form onSubmit={this.onSubmit.bind(this)} action="create-profile.html">
-                        <select className="form-select bg-dark text-white p-2" name="service" onChange={this.onChange}>
-                            <option value="1" selected>Mens Hair Cut</option>
-                            <option value="2" >Womens Hair Cut</option>
-                            <option value="3" >Mens Perm</option>
-                            <option value="4" >Womens Perm</option>
-                            <option value="5" >Treatment</option>
-                        </select>
-                    </form>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <form onSubmit={this.onSubmit.bind(this)} action="create-profile.html">
-                        <select className="form-select bg-dark text-white p-2" name="designer" onChange={this.onChange}>
-                            <option value="1" selected>William</option>
-                            <option value="2" >Jane</option>
+                        <select className="form-select bg-dark text-white p-2" name="selectedDate" onChange={this.onChange}>
+                            <option value={"DATE"} selected>DATE</option>
+                            {datelist.map(date => (
+                                <option value={date}>{date}</option>
+                            ))}
                         </select>
                     </form>
                 </div>
+                {this.state.selectedDate != '' ?
+                    <div>
+                        <BookingPageService selectedDate={this.state.selectedDate}
+                                            selectedDay={this.state.selectedDate.substring(this.state.selectedDate.indexOf(' ')+1).toUpperCase()}
+                                            allSchedules={this.state.allSchedules}
+                                            historyPath={this.props.history} />
+                    </div>
+                    :
+                    <div></div>
+                }
             </div>
         );
     }
