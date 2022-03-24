@@ -1,18 +1,16 @@
-import axios from "axios";
+import axios from "axios"
+import { UPDATE_BOOKING_STATUS, BOOKING_ERROR } from "./types"
 
-export const createBooking = (newbooking, history) => async dispatch => {
+export const createBooking = (salonBooking) => async dispatch => {
     try {
-        const res = await axios.post("https://cors-everywhere.herokuapp.com/http://bookmicroservice-env.eba-vvi3x9cs.ap-southeast-2.elasticbeanstalk.com/api/books/registerBooking", booking);
-        history.push("/");
-        history.push("/booking");
+        const res = await axios.post("http://localhost:8080/salon/booking", salonBooking);
         dispatch({
-            type: UPDATE_ERROR_STATUS,
-            payload: { message: customer.customername + " has been successfully booked." }
+            type: UPDATE_BOOKING_STATUS,
+            payload: { message: salonBooking.customerName + " has been successfully booked." }
         });
-
     } catch (err) {
         dispatch({
-            type: ADD_BOOKING_ERROR,
+            type: BOOKING_ERROR,
             payload: err.response.data
         });
     }

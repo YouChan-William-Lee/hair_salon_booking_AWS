@@ -21,7 +21,7 @@ class Header extends Component {
             if (decoded_token.username) {
                 this.setState({ isUserLoggedIn: true })
                 this.setState({ username: decoded_token.username })
-                if (decoded_token.userRole == "ADMIN") {
+                if (decoded_token.userRole === "ADMIN") {
                     this.setState({ isUserAdmin: true })
                 }
             } else {
@@ -42,7 +42,7 @@ class Header extends Component {
                             <li className="nav-item">
                                 {this.state.isUserLoggedIn && (
                                     <a className="navbar-brand" href="/profile">
-                                        <img src={profileImage} width="50" height="50" className="rounded-circle"></img>
+                                        <img src={profileImage} width="50" height="50" className="rounded-circle" alt="profile"></img>
                                     </a>)}
                             </li>
                         </ul>

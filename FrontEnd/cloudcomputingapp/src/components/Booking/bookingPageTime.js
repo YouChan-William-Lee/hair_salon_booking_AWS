@@ -1,5 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import "../../styleSheets/bookingPage.css"
+import { createBooking } from "../../actions/bookingActions"
+import { connect } from 'react-redux'
+import PropTypes from "prop-types"
+import BookingPopUp from "../Booking/bookingPopUp"
 
 class BookingPageTime extends Component {
     constructor() {
@@ -10,7 +14,11 @@ class BookingPageTime extends Component {
             selectedService: '',
             selectedTime:'',
             selectedDesigner: '',
-            allSchedules: []
+            selectedDesignerId: '',
+            selectedbookingDateTime: '',
+            previousSelectedDate: '',
+            allSchedules: [],
+            popUpOn: false
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -22,26 +30,38 @@ class BookingPageTime extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        const newBooking = {
-            date: this.state.date,
-            designer: this.state.designer,
-            service: this.state.service
-        };
-        this.props.createNewBooking(newBooking, this.props.historyPath);
+        const salonBooking = {
+            staffId: this.state.selectedDesignerId,
+            staffName: this.props.selectedDesigner,
+            customerId: 1,
+            customerName: "scott",
+            hairCutType: this.props.selectedService,
+            bookingDateTime: this.props.selectedYearMonthDate + " " + this.state.selectedTime,
+            bookingDate: (new Date()).getFullYear()+"-"+String((new Date()).getMonth()+1).padStart(2,"0")+"-"+String((new Date()).getDate()).padStart(2,"0"),
+            bookingTime: this.state.selectedTime
+        }
+        this.props.createBooking(salonBooking)
+    }
+
+    componentDidUpdate() {
+        if (this.state.previousSelectedDate != '' && this.props.selectedDate && this.state.previousSelectedDate != this.props.selectedDate) {
+            this.state.selectedTime = "time";
+        }
     }
 
     render() {
         //Firstly, find the designer's staffId
-        var staffId
         for (var i = 0; i < this.props.allSchedules.length; i++) {
-            if (this.props.selectedDesigner == this.props.allSchedules[i].staffName) {
-                staffId = i + 1;
+            if (this.props.selectedDesigner === this.props.allSchedules[i].staffName) {
+                this.state.selectedDesignerId = i + 1;
             }
         }
+        var staffId = this.state.selectedDesignerId
 
         // Secondly, find the times already taken on the designer
         var bookingTime
         var bookedTimes = [];
+        console.log(this.props)
         for (var j = 0; j < this.props.allSchedules[staffId - 1].bookingDateTimes.length; j++) {
             if (this.props.allSchedules[staffId - 1].bookingDateTimes[j].includes(this.props.selectedYearMonthDate)) {
                 bookingTime = this.props.allSchedules[staffId - 1].bookingDateTimes[j];
@@ -50,31 +70,46 @@ class BookingPageTime extends Component {
         }
 
         // Lastly, make the available times
-        console.log(bookedTimes)
         var fullTimes = ["10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00", "16:00:00", "17:00:00", "18:00:00"];
         var availableTimes = fullTimes.filter(item => !bookedTimes.includes(item))
+
+        const PopUp = () => {
+            this.setState({popUpOn: !this.state.popUpOn})
+        }
+
+        const Refresh = () => {
+            window.location.href = "/";
+        }
 
         return (
             <div>
                 <div className="d-flex justify-content-center my-3">
-                    <form onSubmit={this.onSubmit.bind(this)} action="create-profile.html">
-                        <select className="form-select bg-dark text-white p-2" name="selectedTime" onChange={this.onChange}>
-                            <option value="time" selected>Time</option>
+                    <form onSubmit={this.onSubmit}>
+                        <select value={this.state.selectedTime} className="form-select bg-dark text-white p-2" name="selectedTime" onChange={this.onChange}>
+                            <option value="time">Time</option>
                             {availableTimes.map(time => (
-                                <option value={time}>{time}</option>
+                                <option key={time} value={time}>{time}</option>
                             ))}
                         </select>
+                        {this.state.selectedTime !== '' &&
+                            <div className="d-flex justify-content-center my-3">
+                                <input type="submit" className="btn btn-primary btn-block mt-4" onClick={PopUp} />
+                            </div>
+                        }
                     </form>
                 </div>
-                {console.log(this.state.selectedTime)}
-                {this.state.selectedTime != '' &&
-                    <div className="d-flex justify-content-center my-3">
-                        <input type="submit" className="btn btn-primary btn-block mt-4" />
-                    </div>
-                }
+                {this.state.popUpOn && <BookingPopUp content={<>Your Booking has been successfully done</>} handleClose={Refresh} />}
             </div>
         );
     }
 }
-
-export default BookingPageTime;
+BookingPageTime.propTypes = {
+    createBooking: PropTypes.func.isRequired
+}
+const mapStateProps = state => ({
+    errors: state.errors
+})
+export default connect(
+    mapStateProps,
+    { createBooking }
+)(BookingPageTime);

@@ -15,13 +15,13 @@ class Footer extends Component {
                         <div className="collapse navbar-collapse" id="mobile-nav">
                             <ul className="navbar-nav ml-auto footSpacings">
                                 <li className="nav-item">
-                                    <Link to="/aboutus"><a className="nav-link" href="dashboard"> ABOUT US </a></Link>
+                                    <Link to="/aboutus">ABOUT US</Link>
                                 </li>
                             </ul>
 
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
-                                    <Link to="/contactus"><a className="nav-link " href="register"> CONTACT US </a></Link>
+                                    <Link to="/contactus">CONTACT US</Link>
                                 </li>
                             </ul>
                         </div>

@@ -14,7 +14,7 @@ class ServicePage extends Component {
                     <div className="ml-5 row mt-5 mb-5">
                         <div className="col-md-3">
                             <div className="card" style={{width: '22rem'}}>
-                                <img className="card-img-top servicePic" src={MENS_HAIR_CUT} alt="Card image cap"/>
+                                <img className="card-img-top servicePic" src={MENS_HAIR_CUT} alt="Card cap"/>
                                 <div className="card-body">
                                     <p className="card-text display-6">MENS HAIR CUT</p>
                                     <p className="card-text lead">From</p>
@@ -25,7 +25,7 @@ class ServicePage extends Component {
 
                         <div className="col-md-3">
                             <div className="card" style={{width: '22rem'}}>
-                                <img className="card-img-top servicePic" src={MENS_PERM} alt="Card image cap"/>
+                                <img className="card-img-top servicePic" src={MENS_PERM} alt="Card cap"/>
                                 <div className="card-body">
                                     <p className="card-text display-6">MENS PERM</p>
                                     <p className="card-text lead">From</p>
@@ -36,7 +36,7 @@ class ServicePage extends Component {
 
                         <div className="col-md-3">
                             <div className="card" style={{width: '22rem'}}>
-                                <img className="card-img-top servicePic" src={WOMENS_HAIR_CUT} alt="Card image cap"/>
+                                <img className="card-img-top servicePic" src={WOMENS_HAIR_CUT} alt="Card cap"/>
                                 <div className="card-body">
                                     <p className="card-text display-6">WOMENS HAIR CUT</p>
                                     <p className="card-text lead">From</p>
@@ -47,7 +47,7 @@ class ServicePage extends Component {
 
                         <div className="col-md-3">
                             <div className="card" style={{width: '22rem'}}>
-                                <img className="card-img-top servicePic" src={WOMENS_PERM} alt="Card image cap"/>
+                                <img className="card-img-top servicePic" src={WOMENS_PERM} alt="Card cap"/>
                                 <div className="card-body">
                                     <p className="card-text display-6">WOMENS PERM</p>
                                     <p className="card-text lead">From</p>
@@ -58,7 +58,7 @@ class ServicePage extends Component {
 
                         <div className="col-md-3">
                             <div className="card" style={{width: '22rem'}}>
-                                <img className="card-img-top servicePic" src={TREATMENT} alt="Card image cap"/>
+                                <img className="card-img-top servicePic" src={TREATMENT} alt="Card cap"/>
                                 <div className="card-body">
                                     <p className="card-text display-6">TREATMENT</p>
                                     <p className="card-text lead">From</p>
