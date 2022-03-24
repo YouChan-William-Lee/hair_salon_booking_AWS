@@ -7,6 +7,6 @@ public enum HairCutType {
     MENS_HAIR_CUT,
     MENS_PERM,
     TREATMENT,
-    WOOMENS_HAIR_CUT,
-    WOOMENS_PERM
+    WOMENS_HAIR_CUT,
+    WOMENS_PERM
 }

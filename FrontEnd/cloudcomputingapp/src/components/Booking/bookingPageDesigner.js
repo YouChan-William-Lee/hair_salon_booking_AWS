@@ -10,6 +10,7 @@ class BookingPageDesigner extends Component {
             selectedDate: '',
             selectedService: '',
             selectedDesigner: '',
+            selectedDesignerId: '',
             allSchedules: []
         }
         this.onChange = this.onChange.bind(this);
@@ -31,32 +32,19 @@ class BookingPageDesigner extends Component {
     }
 
     render() {
-
         var availableDesigners = [];
         for (var i = 0; i < this.props.allSchedules.length; i++) {
             // Firstly check whether the designer does the selected service
             if (this.props.allSchedules[i].hairCutTypes.includes(this.props.selectedService)) {
                 for (var j = 0; j < this.props.allSchedules[i].workingPeriods.length; j++) {
                     // Secondly check whether the designer works on the selected day
-                    console.log(this.props.allSchedules[i].workingPeriods[j].workingWeek == this.props.selectedDay)
-                    console.log(this.props.allSchedules[i].workingPeriods[j].workingTimes.length != 0)
                     if (this.props.allSchedules[i].workingPeriods[j].workingWeek == this.props.selectedDay) {
-                        console.log(this.props.allSchedules[i].staffId)
-                        switch (this.props.allSchedules[i].staffId) {
-                            case 1:
-                                availableDesigners.push("William");
-                                break;
-                            case 2:
-                                availableDesigners.push("Jane");
-                                break;
-                            case 3:
-                                availableDesigners.push("Mark");
-                                break;
-                        }
+                        availableDesigners.push(this.props.allSchedules[i].staffName);
                     }
                 }
             }
         }
+        var staffId;
 
         return (
             <div>
@@ -73,11 +61,12 @@ class BookingPageDesigner extends Component {
                 {this.state.selectedDesigner != '' ?
                     <div>
                         <BookingPageTime selectedDate={this.props.selectedDate}
-                                            selectedDay={this.props.selectedDay}
-                                            selectedService={this.props.selectedService}
-                                            selectedDesigner={this.state.selectedDesigner}
-                                            allSchedules={this.props.allSchedules}
-                                            historyPath={this.props.history} />
+                                         selectedYearMonthDate={this.props.selectedYearMonthDate}
+                                         selectedDay={this.props.selectedDay}
+                                         selectedService={this.props.selectedService}
+                                         selectedDesigner={this.state.selectedDesigner}
+                                         allSchedules={this.props.allSchedules}
+                                         historyPath={this.props.history} />
                     </div>
                     :
                     <div></div>

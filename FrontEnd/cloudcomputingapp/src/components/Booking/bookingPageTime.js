@@ -31,32 +31,28 @@ class BookingPageTime extends Component {
     }
 
     render() {
-        console.log(this.props.selectedDay)
-        console.log(this.props.selectedDate)
-        console.log(this.props.selectedService)
-        console.log(this.props.selectedDesigner)
-        var availableTimes = [];
+        //Firstly, find the designer's staffId
         var staffId
-        switch (this.props.selectedDesigner) {
-            case "William":
-                staffId = 1;
-                break;
-            case "Jane":
-                staffId = 2;
-                break;
-            case "Mark":
-                staffId = 3;
-                break;
-        }
-        console.log(this.props.allSchedules[0].workingPeriods[1])
-        for (var i = 0; i < this.props.allSchedules[staffId - 1].workingPeriods.length; i++) {
-            if (this.props.allSchedules[staffId - 1].workingPeriods[i].workingWeek == this.props.selectedDay) {
-                for (var j = 0; j < this.props.allSchedules[staffId - 1].workingPeriods[i].workingTimes.length; j++) {
-                    availableTimes.push(this.props.allSchedules[staffId - 1].workingPeriods[i].workingTimes[j]);
-                }
+        for (var i = 0; i < this.props.allSchedules.length; i++) {
+            if (this.props.selectedDesigner == this.props.allSchedules[i].staffName) {
+                staffId = i + 1;
             }
         }
-        // TODO - Deduct from booking list
+
+        // Secondly, find the times already taken on the designer
+        var bookingTime
+        var bookedTimes = [];
+        for (var j = 0; j < this.props.allSchedules[staffId - 1].bookingDateTimes.length; j++) {
+            if (this.props.allSchedules[staffId - 1].bookingDateTimes[j].includes(this.props.selectedYearMonthDate)) {
+                bookingTime = this.props.allSchedules[staffId - 1].bookingDateTimes[j];
+                bookedTimes.push(bookingTime.substring(bookingTime.indexOf(' ') + 1))
+            }
+        }
+
+        // Lastly, make the available times
+        console.log(bookedTimes)
+        var fullTimes = ["10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00", "16:00:00", "17:00:00", "18:00:00"];
+        var availableTimes = fullTimes.filter(item => !bookedTimes.includes(item))
 
         return (
             <div>
@@ -73,7 +69,7 @@ class BookingPageTime extends Component {
                 {console.log(this.state.selectedTime)}
                 {this.state.selectedTime != '' &&
                     <div className="d-flex justify-content-center my-3">
-                        <input type="submit" className="btn btn-success btn-block mt-4" />
+                        <input type="submit" className="btn btn-primary btn-block mt-4" />
                     </div>
                 }
             </div>

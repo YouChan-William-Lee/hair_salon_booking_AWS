@@ -9,8 +9,8 @@ import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ContactUs from "./components/ContactUs";
 import AboutUs from "./components/AboutUs";
-import CalendarPage from "./components/Calendar/calendarPage";
 import BookingPage from "./components/Booking/bookingPage";
+import ServicePage from "./components/Services/ServicePage";
 
 class App extends Component {
   render() {
@@ -24,7 +24,7 @@ class App extends Component {
                           <Route exact path="/contactus" element={<ContactUs />} />
                           <Route exact path="/aboutus" element={<AboutUs />} />
                           <Route exact path="/booking" element={<BookingPage />} />
-                          <Route exact path="/calendar" element={<CalendarPage />} />
+                          <Route exact path="/service" element={<ServicePage />} />
                       </Routes>
                       <Footer />
                   </div>

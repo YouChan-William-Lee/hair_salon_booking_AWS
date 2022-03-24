@@ -23,15 +23,17 @@ import java.util.Objects;
 public class SalonScheduleResponse {
 
     private Long staffId;
+    private String staffName;
     private List<HairCutType> hairCutTypes;
     private List<WorkingPeriod> workingPeriods;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private List<LocalDateTime> bookingDateTimes;
 
     @Builder(access = AccessLevel.PRIVATE)
-    private SalonScheduleResponse(Long staffId, List<HairCutType> hairCutTypes,
+    private SalonScheduleResponse(Long staffId, String staffName, List<HairCutType> hairCutTypes,
                                   List<WorkingPeriod> workingPeriods, List<LocalDateTime> bookingDateTimes) {
         this.staffId = staffId;
+        this.staffName = staffName;
         this.hairCutTypes = hairCutTypes;
         this.workingPeriods = workingPeriods;
         this.bookingDateTimes = bookingDateTimes;
@@ -41,14 +43,19 @@ public class SalonScheduleResponse {
                                                  Map<Long, List<SalonBooking>> bookingMap) {
 
         return scheduleMap.entrySet().stream()
-                .map(entry ->
-                        SalonScheduleResponse.builder()
-                                .staffId(entry.getKey())
-                                .hairCutTypes(filterHairCutTypes(entry.getKey()))
-                                .workingPeriods(WorkingPeriod.of(entry.getValue()))
-                                .bookingDateTimes(filterBookingDateTime(bookingMap, entry.getKey()))
-                                .build()
-                )
+                .map(entry -> {
+                    String staffName = "";
+                    if (entry.getValue().size() != 0) {
+                        staffName = entry.getValue().get(0).getStaffName();
+                    }
+                    return SalonScheduleResponse.builder()
+                            .staffId(entry.getKey())
+                            .staffName(staffName)
+                            .hairCutTypes(filterHairCutTypes(entry.getKey()))
+                            .workingPeriods(WorkingPeriod.of(entry.getValue()))
+                            .bookingDateTimes(filterBookingDateTime(bookingMap, entry.getKey()))
+                            .build();
+                })
                 .collect(toList());
     }
 
@@ -96,11 +103,11 @@ public class SalonScheduleResponse {
             return Collections.unmodifiableList(Arrays.asList(HairCutType.MENS_HAIR_CUT,
                     HairCutType.MENS_PERM, HairCutType.TREATMENT));
         } else if (staffId.equals(2L)) {
-            return Collections.unmodifiableList(Arrays.asList(HairCutType.WOOMENS_HAIR_CUT,
-                    HairCutType.WOOMENS_PERM, HairCutType.TREATMENT));
+            return Collections.unmodifiableList(Arrays.asList(HairCutType.WOMENS_HAIR_CUT,
+                    HairCutType.WOMENS_PERM, HairCutType.TREATMENT));
         } else if (staffId.equals(3L)) {
             return Collections.unmodifiableList(Arrays.asList(HairCutType.MENS_HAIR_CUT,
-                    HairCutType.WOOMENS_HAIR_CUT, HairCutType.WOOMENS_PERM, HairCutType.MENS_PERM,
+                    HairCutType.WOMENS_HAIR_CUT, HairCutType.WOMENS_PERM, HairCutType.MENS_PERM,
                     HairCutType.TREATMENT));
         }
         return Collections.EMPTY_LIST;

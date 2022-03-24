@@ -32,6 +32,9 @@ public class SalonSchedule  {
     @Column(name = "staff_id")
     private Long staffId;
 
+    @Column(name = "staff_name")
+    private String staffName;
+
     @Enumerated(EnumType.STRING)
     private DayOfWeek dayOfTheWeek;
 

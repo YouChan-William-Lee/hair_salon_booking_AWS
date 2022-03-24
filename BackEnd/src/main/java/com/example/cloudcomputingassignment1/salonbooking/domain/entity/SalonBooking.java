@@ -38,9 +38,16 @@ public class SalonBooking {
     @Column(name = "staff_id")
     private Long staffId;
 
+    @Column(name = "staff_name")
+    private String staffName;
+
     @Column(name = "customer_id")
     private Long customerId;
 
+    @Column(name = "customer_name")
+    private String customerName;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "hair_cut_type")
     private HairCutType hairCutType;
 
@@ -60,10 +67,13 @@ public class SalonBooking {
     private LocalDateTime lastModifiedDate;
 
     @Builder(access = AccessLevel.PRIVATE)
-    private SalonBooking(Long staffId, Long customerId, HairCutType hairCutType,
-                         LocalDateTime bookingDateTime, LocalDate bookingDate, LocalTime bookingTime) {
+    private SalonBooking(Long staffId, Long customerId, HairCutType hairCutType, String staffName,
+                         String customerName, LocalDateTime bookingDateTime, LocalDate bookingDate,
+                         LocalTime bookingTime) {
         this.staffId = staffId;
+        this.staffName = staffName;
         this.customerId = customerId;
+        this.customerName = customerName;
         this.hairCutType = hairCutType;
         this.bookingDateTime = bookingDateTime;
         this.bookingDate = bookingDate;
@@ -73,7 +83,9 @@ public class SalonBooking {
     public static SalonBooking of(SalonBookingRequest request) {
         return SalonBooking.builder()
                 .staffId(request.getStaffId())
+                .staffName(request.getStaffName())
                 .customerId(request.getCustomerId())
+                .customerName(request.getCustomerName())
                 .hairCutType(request.getHairCutType())
                 .bookingDateTime(request.getBookingDateTime())
                 .bookingDate(request.getBookingDateTime().toLocalDate())

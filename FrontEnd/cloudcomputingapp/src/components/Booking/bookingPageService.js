@@ -42,9 +42,11 @@ class BookingPageService extends Component {
                         </select>
                     </form>
                 </div>
-                {this.state.selectedService != '' ?
+                {console.log(this.state.selectedService)}
+                {this.state.selectedService != '' && this.state.selectedService != "service" ?
                     <div>
                         <BookingPageDesigner selectedDate={this.props.selectedDate}
+                                             selectedYearMonthDate={this.props.selectedYearMonthDate}
                                              selectedDay={this.props.selectedDay}
                                              selectedService={this.state.selectedService}
                                              allSchedules={this.props.allSchedules}

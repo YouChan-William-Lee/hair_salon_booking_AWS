@@ -11,7 +11,9 @@ import java.time.LocalDateTime;
 @Setter
 public class SalonBookingRequest {
     private Long staffId;
+    private String staffName;
     private Long customerId;
+    private String customerName;
     private HairCutType hairCutType;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime bookingDateTime;
