@@ -1,9 +1,9 @@
-import React, {Component, useState} from 'react';
-import "../../styleSheets/bookingPage.css"
-import { createBooking } from "../../actions/bookingActions"
-import { connect } from 'react-redux'
-import PropTypes from "prop-types"
-import BookingPopUp from "../Booking/bookingPopUp"
+import React, {Component} from 'react';
+import "../../styleSheets/bookingPage.css";
+import { createBooking } from "../../actions/bookingActions";
+import { connect } from 'react-redux';
+import PropTypes from "prop-types";
+import BookingPopUp from "../Booking/bookingPopUp";
 
 class BookingPageTime extends Component {
     constructor() {
@@ -44,7 +44,7 @@ class BookingPageTime extends Component {
     }
 
     componentDidUpdate() {
-        if (this.state.previousSelectedDate != '' && this.props.selectedDate && this.state.previousSelectedDate != this.props.selectedDate) {
+        if (this.state.previousSelectedDate !== '' && this.props.selectedDate && this.state.previousSelectedDate !== this.props.selectedDate) {
             this.state.selectedTime = "time";
         }
     }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import "../../App.css";
-import { Link } from 'react-router-dom'
 
 class Footer extends Component {
     render() {
@@ -15,13 +14,17 @@ class Footer extends Component {
                         <div className="collapse navbar-collapse" id="mobile-nav">
                             <ul className="navbar-nav ml-auto footSpacings">
                                 <li className="nav-item">
-                                    <Link to="/aboutus">ABOUT US</Link>
+                                    <a className="nav-link" href="/aboutus">
+                                        ABOUT US
+                                    </a>
                                 </li>
                             </ul>
 
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
-                                    <Link to="/contactus">CONTACT US</Link>
+                                    <a className="nav-link" href="/contactus">
+                                        CONTACT US
+                                    </a>
                                 </li>
                             </ul>
                         </div>

@@ -19,10 +19,6 @@ class BookingPage extends Component {
         fetch("http://localhost:8080/salon/schedule").then((response) => response.json()).then(result => { this.setState({ allSchedules: result }) });
     }
 
-    componentDidUpdate(nextProps) {
-        console.log(nextProps)
-    }
-
     render() {
         var today = new Date();
         var this_year = today.getFullYear();
