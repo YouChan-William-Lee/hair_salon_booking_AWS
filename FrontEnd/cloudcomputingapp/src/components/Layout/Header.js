@@ -1,6 +1,11 @@
-import React, { Component } from 'react'
-import profileImage from '../../images/profileImage.png'
+import React, { Component } from 'react';
+import profileImage from '../../images/profileImage.png';
 import jwt_decode from "jwt-decode";
+import { Amplify, Auth } from "aws-amplify";
+import { AmplifySignOut } from "@aws-amplify/ui-react";
+import awsconfig from "../../configs/awsconfig";
+
+Amplify.configure(awsconfig)
 
 class Header extends Component {
     constructor() {
@@ -9,26 +14,29 @@ class Header extends Component {
         this.state = {
             username: "",
             isUserLoggedIn: false,
-            isUserAdmin: false
+            isUserAdmin: false,
+            popUpOn: false
         };
+    }
+
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
     }
 
     componentDidMount() {
         const token = localStorage.getItem("jwtToken");
         if (token) {
-            const decoded_token = jwt_decode(token)
-
-            if (decoded_token.username) {
-                this.setState({ isUserLoggedIn: true })
-                this.setState({ username: decoded_token.username })
-                if (decoded_token.userRole === "ADMIN") {
-                    this.setState({ isUserAdmin: true })
-                }
-            } else {
-                this.setState({ isUserLoggedIn: false })
+            this.setState({isUserLoggedIn: true})
+            if (token.UserRole === "ADMIN") {
+                this.setState({isUserAdmin: true})
             }
-        } else {
-            this.setState({ isUserLoggedIn: false })
+        }
+        else {
+            this.setState({isUserLoggedIn: false})
         }
     }
 
@@ -58,28 +66,20 @@ class Header extends Component {
 
                         {/* Right of the navigaton bar */}
                         <ul className="navbar-nav ml-auto">
-                            {!this.state.isUserLoggedIn && (
-                                <li className="nav-item">
-                                    <a className="nav-link " href="/register">
-                                        Sign Up
-                                    </a>
-                                </li>)}
+                            <li className="nav-item">
+                                <a className="nav-link" href="/booking">
+                                    Booking
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/service">
+                                    Service
+                                </a>
+                            </li>
                             {!this.state.isUserLoggedIn && (
                                 <li className="nav-item">
                                     <a className="nav-link" href="/login">
                                         Login
-                                    </a>
-                                </li>)}
-                            {this.state.isUserLoggedIn && (
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/booking">
-                                        Booking
-                                    </a>
-                                </li>)}
-                            {this.state.isUserLoggedIn && (
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/service">
-                                        Service
                                     </a>
                                 </li>)}
                             {this.state.isUserLoggedIn && (

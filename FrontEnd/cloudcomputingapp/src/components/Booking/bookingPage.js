@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import DatePicker from 'sassy-datepicker';
-import BookingPageService from '../Booking/bookingPageService'
-import Amplify from "aws-amplify"
-import { AmplifySignOut, withAuthenticator } from "@aws-amplify/ui-react"
-import awsconfig from "../../configs/awsconfig"
+import BookingPageService from '../Booking/bookingPageService';
+import Amplify from "aws-amplify";
+import { withAuthenticator, AmplifySignIn, AmplifyAuthenticator } from "@aws-amplify/ui-react";
+import awsconfig from "../../configs/awsconfig";
 
 Amplify.configure(awsconfig)
 
@@ -13,7 +13,8 @@ class BookingPage extends Component {
         date: new Date(),
         selectedDate: '',
         selectedDay: '',
-        allSchedules: []
+        allSchedules: [],
+        user: ''
     }
 
     onChange = date => {
@@ -30,23 +31,32 @@ class BookingPage extends Component {
         var this_month_index = today.getMonth();
         var this_month = this_month_index + 1
         const days = ["Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-        console.log(Amplify.Credentials.Auth.user.username)
+
         return (
-            <div className="calendar">
-                <div className="d-flex justify-content-center my-3">
-                    <div>
-                    <DatePicker onChange={this.onChange}
-                                value={this.state.date}
-                                minDate={today}
-                                maxDate={new Date(this_year, this_month, 0)} />
-                    </div>
-                    <div>
-                        <BookingPageService selectedDate={this.state.date.getDate()}
-                                            selectedYearMonthDate={this_year+"-"+String(this_month).padStart(2,"0")+"-"+String(this.state.date.getDate()).padStart(2,"0")}
-                                            selectedDay={days[this.state.date.getDay()].toUpperCase()}
-                                            allSchedules={this.state.allSchedules}
-                                            selectedService={"service"}
-                                            historyPath={this.state.history} />
+            <div>
+                <div>
+                    {localStorage.getItem("jwtToken") === null && Amplify.Credentials.Auth.user !== null && (
+                        <div>
+                            {localStorage.setItem("jwtToken", Amplify.Credentials.Auth.user.username)}
+                            {window.location.reload()}
+                        </div>)}
+                </div>
+                <div className="calendar">
+                    <div className="d-flex justify-content-center my-3">
+                        <div>
+                        <DatePicker onChange={this.onChange}
+                                    value={this.state.date}
+                                    minDate={today}
+                                    maxDate={new Date(this_year, this_month, 0)} />
+                        </div>
+                        <div>
+                            <BookingPageService selectedDate={this.state.date.getDate()}
+                                                selectedYearMonthDate={this_year+"-"+String(this_month).padStart(2,"0")+"-"+String(this.state.date.getDate()).padStart(2,"0")}
+                                                selectedDay={days[this.state.date.getDay()].toUpperCase()}
+                                                allSchedules={this.state.allSchedules}
+                                                selectedService={"service"}
+                                                historyPath={this.state.history} />
+                        </div>
                     </div>
                 </div>
             </div>

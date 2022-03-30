@@ -34,7 +34,7 @@ class BookingPageTime extends Component {
             staffId: this.state.selectedDesignerId,
             staffName: this.props.selectedDesigner,
             customerId: 1,
-            customerName: "scott",
+            customerName: localStorage.getItem("jwtToken"),
             hairCutType: this.props.selectedService,
             bookingDateTime: this.props.selectedYearMonthDate + " " + this.state.selectedTime,
             bookingDate: (new Date()).getFullYear()+"-"+String((new Date()).getMonth()+1).padStart(2,"0")+"-"+String((new Date()).getDate()).padStart(2,"0"),

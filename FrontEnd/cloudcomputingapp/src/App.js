@@ -11,6 +11,8 @@ import ContactUs from "./components/ContactUs";
 import AboutUs from "./components/AboutUs";
 import BookingPage from "./components/Booking/bookingPage";
 import ServicePage from "./components/Services/ServicePage";
+import Login from "./components/User/Login"
+import Logout from "./components/User/Logout"
 
 class App extends Component {
     render() {
@@ -20,9 +22,11 @@ class App extends Component {
                     <Header/>
                     <Routes>
                         <Route exact path="/" element={<Landing/>}/>
+                        <Route exact path="login" element={<Login/>}/>
+                        <Route exact path="logout" element={<Logout/>}/>
                         <Route exact path="/contactus" element={<ContactUs/>}/>
                         <Route exact path="/aboutus" element={<AboutUs/>}/>
-                        <Route exact path="/booking" element={<BookingPage/>}/>
+                        <Route exact path="/booking" element={<BookingPage/>} />
                         <Route exact path="/service" element={<ServicePage/>}/>
                     </Routes>
                     <Footer/>

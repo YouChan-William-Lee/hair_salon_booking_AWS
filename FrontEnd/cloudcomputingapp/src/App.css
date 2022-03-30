@@ -92,3 +92,10 @@ img {
   margin: 0 auto;
   padding: 20px;
 }
+
+:root {
+  --amplify-primary-color: #000000;
+  --amplify-primary-tint: #7d8fb6;
+  --amplify-primary-shade: #55627e;
+  --amplify-background-color: #eeeeee;
+}

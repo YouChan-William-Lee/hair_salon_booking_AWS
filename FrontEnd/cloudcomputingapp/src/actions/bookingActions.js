@@ -1,5 +1,5 @@
-import axios from "axios"
-import { UPDATE_BOOKING_STATUS, BOOKING_ERROR } from "./types"
+import axios from "axios";
+import { UPDATE_BOOKING_STATUS, BOOKING_ERROR } from "./types";
 
 export const createBooking = (salonBooking) => async dispatch => {
     try {
