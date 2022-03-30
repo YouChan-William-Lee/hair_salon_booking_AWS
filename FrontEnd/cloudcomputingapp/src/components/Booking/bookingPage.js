@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import DatePicker from 'sassy-datepicker';
 import BookingPageService from '../Booking/bookingPageService'
+import Amplify from "aws-amplify"
+import { AmplifySignOut, withAuthenticator } from "@aws-amplify/ui-react"
+import awsconfig from "../../configs/awsconfig"
+
+Amplify.configure(awsconfig)
 
 class BookingPage extends Component {
     state = {
@@ -25,6 +30,7 @@ class BookingPage extends Component {
         var this_month_index = today.getMonth();
         var this_month = this_month_index + 1
         const days = ["Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        console.log(Amplify.Credentials.Auth.user.username)
         return (
             <div className="calendar">
                 <div className="d-flex justify-content-center my-3">
@@ -48,4 +54,4 @@ class BookingPage extends Component {
     }
 }
 
-export default BookingPage;
+export default withAuthenticator(BookingPage);
