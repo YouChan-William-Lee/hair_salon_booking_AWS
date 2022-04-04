@@ -12,7 +12,6 @@ class Logout extends Component {
                 <AmplifyAuthenticator>
                     <h1>Do you really want to log out?</h1>
                     <AmplifySignOut />
-                    {localStorage.removeItem("userName")}
                     {localStorage.clear()}
                     {window.location.href="/"}
                 </AmplifyAuthenticator>

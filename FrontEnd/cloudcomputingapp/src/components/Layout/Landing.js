@@ -11,30 +11,8 @@ class Landing extends Component {
         super();
 
         this.state={
-            userLogin: false
-        }
-    }
-
-    componentDidMount() {
-        console.log(this.props.userLogin)
-        if (this.props.userLogin == true) {
-            if (localStorage.getItem("jwtToken") === null && Amplify.Credentials.Auth.user !== null) {
-                console.log("test2");
-                localStorage.setItem("jwtToken", Amplify.Credentials.Auth.user.username);
-                window.location.href = "/";
-            }
-        }
-    }
-
-    componentDidUpdate() {
-        console.log(this.props.userLogin)
-        console.log("test1")
-        if (this.props.userLogin == true) {
-            if (localStorage.getItem("jwtToken") === null && Amplify.Credentials.Auth.user !== null) {
-                console.log("test2");
-                localStorage.setItem("jwtToken", Amplify.Credentials.Auth.user.username);
-                window.location.href = "/";
-            }
+            userLogin: false,
+            userAdmin: false
         }
     }
 

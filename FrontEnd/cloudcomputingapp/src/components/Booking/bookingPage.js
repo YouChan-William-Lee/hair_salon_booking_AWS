@@ -14,7 +14,7 @@ class BookingPage extends Component {
         selectedDate: '',
         selectedDay: '',
         allSchedules: [],
-        user: ''
+        userAdmin: false
     }
 
     onChange = date => {
@@ -23,6 +23,8 @@ class BookingPage extends Component {
 
     componentDidMount() {
         fetch("http://localhost:8080/salon/schedule").then((response) => response.json()).then(result => { this.setState({ allSchedules: result }) });
+        if (localStorage.getItem("userName"))
+            fetch(`http://localhost:8080/staff/check/${Amplify.Credentials.Auth.user.attributes.email}`).then((response) => response.json()).then(result => { this.setState({ userAdmin: result }) });
     }
 
     render() {
@@ -31,7 +33,7 @@ class BookingPage extends Component {
         var this_month_index = today.getMonth();
         var this_month = this_month_index + 1
         const days = ["Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-
+        localStorage.setItem("userAdmin", this.state.userAdmin)
         return (
             <div>
                 <div>

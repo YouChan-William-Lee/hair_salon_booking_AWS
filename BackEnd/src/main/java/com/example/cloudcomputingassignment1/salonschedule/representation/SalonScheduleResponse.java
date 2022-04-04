@@ -24,16 +24,18 @@ public class SalonScheduleResponse {
 
     private Long staffId;
     private String staffName;
+    private String staffEmail;
     private List<HairCutType> hairCutTypes;
     private List<WorkingPeriod> workingPeriods;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private List<LocalDateTime> bookingDateTimes;
 
     @Builder(access = AccessLevel.PRIVATE)
-    private SalonScheduleResponse(Long staffId, String staffName, List<HairCutType> hairCutTypes,
+    private SalonScheduleResponse(Long staffId, String staffName, String staffEmail, List<HairCutType> hairCutTypes,
                                   List<WorkingPeriod> workingPeriods, List<LocalDateTime> bookingDateTimes) {
         this.staffId = staffId;
         this.staffName = staffName;
+        this.staffEmail = staffEmail;
         this.hairCutTypes = hairCutTypes;
         this.workingPeriods = workingPeriods;
         this.bookingDateTimes = bookingDateTimes;
@@ -45,12 +47,15 @@ public class SalonScheduleResponse {
         return scheduleMap.entrySet().stream()
                 .map(entry -> {
                     String staffName = "";
+                    String staffEmail = "";
                     if (entry.getValue().size() != 0) {
                         staffName = entry.getValue().get(0).getStaffName();
+                        staffEmail = entry.getValue().get(0).getStaffEmail();
                     }
                     return SalonScheduleResponse.builder()
                             .staffId(entry.getKey())
                             .staffName(staffName)
+                            .staffEmail(staffEmail)
                             .hairCutTypes(filterHairCutTypes(entry.getKey()))
                             .workingPeriods(WorkingPeriod.of(entry.getValue()))
                             .bookingDateTimes(filterBookingDateTime(bookingMap, entry.getKey()))

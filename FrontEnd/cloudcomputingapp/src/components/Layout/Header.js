@@ -28,15 +28,11 @@ class Header extends Component {
     }
 
     componentDidMount() {
-        const token = localStorage.getItem("userName");
-        if (token) {
-            this.setState({isUserLoggedIn: true})
-            if (token.UserRole === "ADMIN") {
-                this.setState({isUserAdmin: true})
+        if (localStorage.getItem("userName")) {
+            this.setState({ isUserLoggedIn: true })
+            if (localStorage.getItem("userAdmin") === "true") {
+                this.setState({ isUserAdmin: true })
             }
-        }
-        else {
-            this.setState({isUserLoggedIn: false})
         }
     }
 
@@ -59,7 +55,7 @@ class Header extends Component {
                         <ul className="nav navbar-nav navbar-logo mx-auto">
                             <li className="nav-item">
                                 <a className="navbar-brand adminNavBar" href="/">
-                                    Will's hair salon
+                                    William Hair Salon
                                 </a>
                             </li>
                         </ul>
