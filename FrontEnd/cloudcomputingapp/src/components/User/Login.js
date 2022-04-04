@@ -12,7 +12,9 @@ class Login extends Component {
     render() {
         return (
             <div>
-                {localStorage.setItem("jwtToken", Amplify.Credentials.Auth.user.username)}
+                {localStorage.setItem("userName", Amplify.Credentials.Auth.user.username)}
+                {localStorage.setItem("userEmail", Amplify.Credentials.Auth.user.attributes.email)}
+                {localStorage.setItem("userPhone", Amplify.Credentials.Auth.user.attributes.phone_number)}
                 {window.location.href="/"}
             </div>
         );

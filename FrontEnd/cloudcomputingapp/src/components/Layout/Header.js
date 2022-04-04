@@ -28,7 +28,7 @@ class Header extends Component {
     }
 
     componentDidMount() {
-        const token = localStorage.getItem("jwtToken");
+        const token = localStorage.getItem("userName");
         if (token) {
             this.setState({isUserLoggedIn: true})
             if (token.UserRole === "ADMIN") {

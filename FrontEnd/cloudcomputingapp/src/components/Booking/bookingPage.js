@@ -35,9 +35,11 @@ class BookingPage extends Component {
         return (
             <div>
                 <div>
-                    {localStorage.getItem("jwtToken") === null && Amplify.Credentials.Auth.user !== null && (
+                    {localStorage.getItem("userName") === null && Amplify.Credentials.Auth.user !== null && (
                         <div>
-                            {localStorage.setItem("jwtToken", Amplify.Credentials.Auth.user.username)}
+                            {localStorage.setItem("userName", Amplify.Credentials.Auth.user.username)}
+                            {localStorage.setItem("userEmail", Amplify.Credentials.Auth.user.attributes.email)}
+                            {localStorage.setItem("userPhone", Amplify.Credentials.Auth.user.attributes.phone_number)}
                             {window.location.reload()}
                         </div>)}
                 </div>
