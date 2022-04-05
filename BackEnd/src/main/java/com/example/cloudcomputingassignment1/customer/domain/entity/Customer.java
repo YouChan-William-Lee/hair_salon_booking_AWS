@@ -1,8 +1,6 @@
 package com.example.cloudcomputingassignment1.customer.domain.entity;
 
 import com.example.cloudcomputingassignment1.customer.representation.CustomerRequest;
-import com.example.cloudcomputingassignment1.staff.domain.entity.Staff;
-import com.example.cloudcomputingassignment1.staff.representation.StaffRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

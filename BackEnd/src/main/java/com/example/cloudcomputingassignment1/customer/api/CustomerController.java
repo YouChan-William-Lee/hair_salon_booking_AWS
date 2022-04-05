@@ -2,7 +2,6 @@ package com.example.cloudcomputingassignment1.customer.api;
 
 import com.example.cloudcomputingassignment1.customer.app.CustomerAppService;
 import com.example.cloudcomputingassignment1.customer.domain.entity.Customer;
-import com.example.cloudcomputingassignment1.customer.domain.infra.repository.CustomerRepository;
 import com.example.cloudcomputingassignment1.customer.representation.CustomerRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +23,10 @@ public class CustomerController {
     @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody CustomerRequest request) {
         Customer customer = customerAppService.findByCustomerEmail(request.getCustomerEmail());
-        if (customer == null)
+        if (customer == null) {
+            System.out.println("TEST saving");
             customerAppService.save(request);
+        }
         return new ResponseEntity<>(request, HttpStatus.OK);
     }
 }

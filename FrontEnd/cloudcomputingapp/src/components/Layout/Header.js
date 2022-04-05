@@ -30,6 +30,7 @@ class Header extends Component {
     componentDidMount() {
         if (localStorage.getItem("userName")) {
             this.setState({ isUserLoggedIn: true })
+            console.log(localStorage.getItem("userAdmin"));
             if (localStorage.getItem("userAdmin") === "true") {
                 this.setState({ isUserAdmin: true })
             }

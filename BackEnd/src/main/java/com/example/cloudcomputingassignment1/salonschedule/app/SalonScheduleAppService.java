@@ -7,7 +7,6 @@ import com.example.cloudcomputingassignment1.salonschedule.domain.entity.SalonSc
 import com.example.cloudcomputingassignment1.salonschedule.domain.infra.SalonScheduleQueryService;
 import com.example.cloudcomputingassignment1.salonschedule.representation.SalonScheduleResponse;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;

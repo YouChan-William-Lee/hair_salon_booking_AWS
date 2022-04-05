@@ -4,6 +4,9 @@ import BookingPageService from '../Booking/bookingPageService';
 import Amplify from "aws-amplify";
 import { withAuthenticator, AmplifySignIn, AmplifyAuthenticator } from "@aws-amplify/ui-react";
 import awsconfig from "../../configs/awsconfig";
+import { createCustomer } from "../../actions/customerActions";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 Amplify.configure(awsconfig)
 
@@ -14,7 +17,7 @@ class BookingPage extends Component {
         selectedDate: '',
         selectedDay: '',
         allSchedules: [],
-        userAdmin: false
+        adminAccount: "youchanwilliamlee@gmail.com"
     }
 
     onChange = date => {
@@ -22,18 +25,36 @@ class BookingPage extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8080/salon/schedule").then((response) => response.json()).then(result => { this.setState({ allSchedules: result }) });
-        if (localStorage.getItem("userName"))
-            fetch(`http://localhost:8080/staff/check/${Amplify.Credentials.Auth.user.attributes.email}`).then((response) => response.json()).then(result => { this.setState({ userAdmin: result }) });
+        fetch("http://localhost:8080/salon/schedule").then((response) => response.json()).then(result => {
+            this.setState({allSchedules: result})
+        });
+        if (localStorage.getItem("userName")) {
+            fetch(`http://localhost:8080/staff/check/${Amplify.Credentials.Auth.user.attributes.email}`).then((response) => response.json()).then(result => {
+                localStorage.setItem("userAdmin", result)});
+
+            if (localStorage.getItem("userEmail") !== this.state.adminAccount && localStorage.getItem("userSavedInDb") === null) {
+                const saveCustomer = {
+                    customerEmail: localStorage.getItem("userEmail"),
+                    phoneNumber: localStorage.getItem("userPhone"),
+                    customerName: localStorage.getItem("userName")
+                }
+                console.log("TEST saving");
+                this.props.createCustomer(saveCustomer);
+                localStorage.setItem("userSavedInDb", true);
+            }
+            else if (localStorage.getItem("userEmail") === this.state.adminAccount && localStorage.getItem("refresh") === null) {
+                localStorage.setItem("refresh", "Done");
+                window.location.reload();
+            }
+        }
     }
 
     render() {
         var today = new Date();
         var this_year = today.getFullYear();
         var this_month_index = today.getMonth();
-        var this_month = this_month_index + 1
+        var this_month = this_month_index + 1;
         const days = ["Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-        localStorage.setItem("userAdmin", this.state.userAdmin)
         return (
             <div>
                 <div>
@@ -42,7 +63,7 @@ class BookingPage extends Component {
                             {localStorage.setItem("userName", Amplify.Credentials.Auth.user.username)}
                             {localStorage.setItem("userEmail", Amplify.Credentials.Auth.user.attributes.email)}
                             {localStorage.setItem("userPhone", Amplify.Credentials.Auth.user.attributes.phone_number)}
-                            {window.location.reload()}
+                            {/*{window.location.reload()}*/}
                         </div>)}
                 </div>
                 <div className="calendar">
@@ -67,5 +88,13 @@ class BookingPage extends Component {
         );
     }
 }
-
-export default withAuthenticator(BookingPage);
+BookingPage.propTypes = {
+    createCustomer: PropTypes.func.isRequired
+}
+const mapStateProps = state => ({
+    errors: state.errors
+})
+export default connect(
+    mapStateProps,
+    { createCustomer }
+)(withAuthenticator(BookingPage));

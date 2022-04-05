@@ -44,18 +44,18 @@ create table salon_booking (
                                primary key (id)
 );
 
-insert into staff values(1, 'youchanwilliamlee@gmail.com', 'William', 'ADMIN', '+610412345678');
+insert into staff values(1, 'youchanwilliamlee@gmail.com', 'Youchan', 'ADMIN', '+610412345678');
 insert into staff values(2, 'whs_william@gmail.com', 'William', 'STAFF', '+610400111222');
 insert into staff values(3, 'whs_jane@gmail.com', 'Jane', 'STAFF', '+610411222333');
 insert into staff values(4, 'whs_mark@gmail.com', 'Mark', 'STAFF', '+610422333444');
 
-insert into salon_schedule values (1, 1, 'William', 'youchanwilliamlee@gmail.com', 'MONDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (2, 1, 'William', 'youchanwilliamlee@gmail.com', 'TUESDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (3, 1, 'William', 'youchanwilliamlee@gmail.com', 'WEDNESDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (4, 1, 'William', 'youchanwilliamlee@gmail.com', 'THURSDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (5, 1, 'William', 'youchanwilliamlee@gmail.com', 'FRIDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (6, 1, 'William', 'youchanwilliamlee@gmail.com', 'SATURDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (7, 1, 'William', 'youchanwilliamlee@gmail.com', 'SUNDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (1, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'MONDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (2, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'TUESDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (3, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'WEDNESDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (4, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'THURSDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (5, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'FRIDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (6, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'SATURDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (7, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'SUNDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
 
 insert into salon_schedule values (8, 2, 'William', 'whs_william@gmail.com', 'MONDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
 insert into salon_schedule values (9, 2, 'William', 'whs_william@gmail.com', 'TUESDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
@@ -81,7 +81,7 @@ insert into salon_schedule values (26, 4, 'Mark', 'whs_mark@gmail.com', 'FRIDAY'
 insert into salon_schedule values (27, 4, 'Mark', 'whs_mark@gmail.com', 'SATURDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
 insert into salon_schedule values (28, 4, 'Mark', 'whs_mark@gmail.com', 'SUNDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
 
-insert into salon_booking values (1,'2022-04-01','2022-04-06 11:00:00','11:00:00', '2022-04-01 16:02:04',1,'Scott','scott@gmail.com','MENS_HAIR_CUT','2022-03-24 16:02:04',1,'William','whs_william@gmail.com');
-insert into salon_booking values (2,'2022-04-02','2022-04-08 12:00:00','12:00:00', '2022-04-02 16:02:04',1,'James','james@gmail.com','TREATMENT','2022-03-24 16:02:04',1,'William','whs_william@gmail.com');
-insert into salon_booking values (3,'2022-04-03','2022-04-09 13:00:00','13:00:00', '2022-04-03 16:02:04',1,'Michelle','michelle@gmail.com','WOMENS_PERM','2022-03-24 16:02:04',2,'Jane','whs_jane@gmail.com');
-insert into salon_booking values (4,'2022-04-04','2022-04-10 14:00:00','14:00:00', '2022-04-04 16:02:04',1,'Sharlot','sharlot@gmail.com','MENS_HAIR_CUT','2022-03-24 16:02:04',3,'Mark','whs_mark@gmail.com');
+insert into salon_booking values (1,'2022-04-01','2022-04-06 11:00:00','11:00:00', '2022-04-01 16:02:04',1,'Scott','scott@gmail.com','MENS_HAIR_CUT','2022-03-24 16:02:04',2,'William','whs_william@gmail.com');
+insert into salon_booking values (2,'2022-04-02','2022-04-08 12:00:00','12:00:00', '2022-04-02 16:02:04',2,'James','james@gmail.com','TREATMENT','2022-03-24 16:02:04',2,'William','whs_william@gmail.com');
+insert into salon_booking values (3,'2022-04-03','2022-04-09 13:00:00','13:00:00', '2022-04-03 16:02:04',3,'Michelle','michelle@gmail.com','WOMENS_PERM','2022-03-24 16:02:04',3,'Jane','whs_jane@gmail.com');
+insert into salon_booking values (4,'2022-04-04','2022-04-10 14:00:00','14:00:00', '2022-04-04 16:02:04',4,'Sharlot','sharlot@gmail.com','MENS_HAIR_CUT','2022-03-24 16:02:04',4,'Mark','whs_mark@gmail.com');
