@@ -38,7 +38,6 @@ class BookingPage extends Component {
                     phoneNumber: localStorage.getItem("userPhone"),
                     customerName: localStorage.getItem("userName")
                 }
-                console.log("TEST saving");
                 this.props.createCustomer(saveCustomer);
                 localStorage.setItem("userSavedInDb", true);
             }

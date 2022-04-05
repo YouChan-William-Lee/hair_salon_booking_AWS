@@ -11,10 +11,11 @@ import ContactUs from "./components/ContactUs";
 import AboutUs from "./components/AboutUs";
 import BookingPage from "./components/Booking/bookingPage";
 import ServicePage from "./components/Services/ServicePage";
-import Login from "./components/User/Login"
-import Logout from "./components/User/Logout"
-import Admin from "./components/Admin/Admin"
-import Profile from "./components/User/Profile"
+import Login from "./components/User/Login";
+import Logout from "./components/User/Logout";
+import Admin from "./components/Admin/Admin";
+import Profile from "./components/User/Profile";
+import AddStaff from "./components/Admin/AddStaff";
 
 class App extends Component {
     render() {
@@ -27,6 +28,7 @@ class App extends Component {
                         <Route exact path="/login" element={<Login/>}/>
                         <Route exact path="/logout" element={<Logout/>}/>
                         <Route exact path="/admin" element={<Admin/>}/>
+                        <Route exact path="/addstaff" element={<AddStaff/>}/>
                         <Route exact path="/profile" element={<Profile/>}/>
                         <Route exact path="/contactus" element={<ContactUs/>}/>
                         <Route exact path="/aboutus" element={<AboutUs/>}/>

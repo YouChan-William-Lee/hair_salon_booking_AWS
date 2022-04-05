@@ -8,7 +8,6 @@ Amplify.configure(awsconfig)
 
 class Login extends Component {
     state = {
-        userAdmin: false,
         adminAccount: "youchanwilliamlee@gmail.com"
     }
 
@@ -28,9 +27,12 @@ class Login extends Component {
                         phoneNumber: localStorage.getItem("userPhone"),
                         customerName: localStorage.getItem("userName")
                     }
-                    console.log("TEST saving");
                     this.props.createCustomer(saveCustomer);
                     localStorage.setItem("userSavedInDb", true);
+                }
+                else if (localStorage.getItem("userEmail") === this.state.adminAccount && localStorage.getItem("refresh") === null) {
+                    localStorage.setItem("refresh", "Done");
+                    window.location.reload();
                 }
             }
         }

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 
 class Admin extends Component {
     constructor() {
@@ -24,7 +25,7 @@ class Admin extends Component {
                             <h1 className="display-4 text-center">Staff</h1>
                             <br />
                             <br />
-                            <table className="table">
+                            <table className="table align-center text-center w-100" align="center">
                                 <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -45,6 +46,12 @@ class Admin extends Component {
                                     </tr>))}
                                 </tbody>
                             </table>
+                        </div>
+                        <div className="d-flex justify-content-center">
+                            <Link to="/addstaff"
+                                  className="btn btn-dark btn-lg active">
+                                Add Staff
+                            </Link>
                         </div>
                     </div>
                 </div>

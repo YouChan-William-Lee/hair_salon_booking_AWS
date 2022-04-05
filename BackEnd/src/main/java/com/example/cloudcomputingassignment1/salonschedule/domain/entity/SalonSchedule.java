@@ -38,6 +38,9 @@ public class SalonSchedule  {
     @Column(name = "staff_email")
     private String staffEmail;
 
+    @Column(name = "schedule_type")
+    private Long scheduleType;
+
     @Enumerated(EnumType.STRING)
     private DayOfWeek dayOfTheWeek;
 
@@ -49,5 +52,4 @@ public class SalonSchedule  {
 
     @UpdateTimestamp
     private LocalDateTime lastModifiedDate;
-
 }

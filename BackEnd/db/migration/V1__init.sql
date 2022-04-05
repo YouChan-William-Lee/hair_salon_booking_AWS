@@ -11,6 +11,7 @@ create table salon_schedule (
                                 staff_id bigint,
                                 staff_name varchar(25),
                                 staff_email varchar(255),
+                                schedule_type bigint,
                                 day_of_the_week varchar(255),
                                 is_holiday boolean,
                                 created_date timestamp,
@@ -49,37 +50,37 @@ insert into staff values(2, 'whs_william@gmail.com', 'William', 'STAFF', '+61040
 insert into staff values(3, 'whs_jane@gmail.com', 'Jane', 'STAFF', '+610411222333');
 insert into staff values(4, 'whs_mark@gmail.com', 'Mark', 'STAFF', '+610422333444');
 
-insert into salon_schedule values (1, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'MONDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (2, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'TUESDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (3, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'WEDNESDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (4, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'THURSDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (5, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'FRIDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (6, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'SATURDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (7, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 'SUNDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (1, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 0, 'MONDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (2, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 0, 'TUESDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (3, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 0, 'WEDNESDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (4, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 0, 'THURSDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (5, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 0, 'FRIDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (6, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 0, 'SATURDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (7, 1, 'Youchan', 'youchanwilliamlee@gmail.com', 0, 'SUNDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
 
-insert into salon_schedule values (8, 2, 'William', 'whs_william@gmail.com', 'MONDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (9, 2, 'William', 'whs_william@gmail.com', 'TUESDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (10, 2, 'William', 'whs_william@gmail.com', 'WEDNESDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (11, 2, 'William', 'whs_william@gmail.com', 'THURSDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (12, 2, 'William', 'whs_william@gmail.com', 'FRIDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (13, 2, 'William', 'whs_william@gmail.com', 'SATURDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (14, 2, 'William', 'whs_william@gmail.com', 'SUNDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (8, 2, 'William', 'whs_william@gmail.com', 1, 'MONDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (9, 2, 'William', 'whs_william@gmail.com', 1, 'TUESDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (10, 2, 'William', 'whs_william@gmail.com', 1, 'WEDNESDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (11, 2, 'William', 'whs_william@gmail.com', 1, 'THURSDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (12, 2, 'William', 'whs_william@gmail.com', 1, 'FRIDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (13, 2, 'William', 'whs_william@gmail.com', 1, 'SATURDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (14, 2, 'William', 'whs_william@gmail.com', 1, 'SUNDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
 
-insert into salon_schedule values (15, 3, 'Jane', 'whs_jane@gmail.com', 'MONDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (16, 3, 'Jane', 'whs_jane@gmail.com', 'TUESDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (17, 3, 'Jane', 'whs_jane@gmail.com', 'WEDNESDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (18, 3, 'Jane', 'whs_jane@gmail.com', 'THURSDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (19, 3, 'Jane', 'whs_jane@gmail.com', 'FRIDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (20, 3, 'Jane', 'whs_jane@gmail.com', 'SATURDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (21, 3, 'Jane', 'whs_jane@gmail.com', 'SUNDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (15, 3, 'Jane', 'whs_jane@gmail.com', 2, 'MONDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (16, 3, 'Jane', 'whs_jane@gmail.com', 2, 'TUESDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (17, 3, 'Jane', 'whs_jane@gmail.com', 2, 'WEDNESDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (18, 3, 'Jane', 'whs_jane@gmail.com', 2, 'THURSDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (19, 3, 'Jane', 'whs_jane@gmail.com', 2, 'FRIDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (20, 3, 'Jane', 'whs_jane@gmail.com', 2, 'SATURDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (21, 3, 'Jane', 'whs_jane@gmail.com', 2, 'SUNDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
 
-insert into salon_schedule values (22, 4, 'Mark', 'whs_mark@gmail.com', 'MONDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (23, 4, 'Mark', 'whs_mark@gmail.com', 'TUESDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (24, 4, 'Mark', 'whs_mark@gmail.com', 'WEDNESDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (25, 4, 'Mark', 'whs_mark@gmail.com', 'THURSDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (26, 4, 'Mark', 'whs_mark@gmail.com', 'FRIDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (27, 4, 'Mark', 'whs_mark@gmail.com', 'SATURDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
-insert into salon_schedule values (28, 4, 'Mark', 'whs_mark@gmail.com', 'SUNDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (22, 4, 'Mark', 'whs_mark@gmail.com', 3, 'MONDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (23, 4, 'Mark', 'whs_mark@gmail.com', 3, 'TUESDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (24, 4, 'Mark', 'whs_mark@gmail.com', 3, 'WEDNESDAY', 0, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (25, 4, 'Mark', 'whs_mark@gmail.com', 3, 'THURSDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (26, 4, 'Mark', 'whs_mark@gmail.com', 3, 'FRIDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (27, 4, 'Mark', 'whs_mark@gmail.com', 3, 'SATURDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
+insert into salon_schedule values (28, 4, 'Mark', 'whs_mark@gmail.com', 3, 'SUNDAY', 1, '2022-03-23 00:00:00', '2022-03-23 00:00:00');
 
 insert into salon_booking values (1,'2022-04-01','2022-04-06 11:00:00','11:00:00', '2022-04-01 16:02:04',1,'Scott','scott@gmail.com','MENS_HAIR_CUT','2022-03-24 16:02:04',2,'William','whs_william@gmail.com');
 insert into salon_booking values (2,'2022-04-02','2022-04-08 12:00:00','12:00:00', '2022-04-02 16:02:04',2,'James','james@gmail.com','TREATMENT','2022-03-24 16:02:04',2,'William','whs_william@gmail.com');

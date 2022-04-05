@@ -24,30 +24,30 @@ class Profile extends Component {
                             <h1 className="display-4 text-center">Profile</h1>
                             <br/>
                             <br/>
-                            <table className="table">
+                            <table className="table align-center text-center w-50" align="center">
                                 <thead>
-                                <tr>
-                                    <th scope="col"> </th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Information</th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col"> </th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Information</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>name</td>
-                                    <td>{localStorage.getItem("userName")}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>Email</td>
-                                    <td>{localStorage.getItem("userEmail")}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>Phone Number</td>
-                                    <td>{localStorage.getItem("userPhone")}</td>
-                                </tr>
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td>name</td>
+                                        <td>{localStorage.getItem("userName")}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td>Email</td>
+                                        <td>{localStorage.getItem("userEmail")}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td>Phone Number</td>
+                                        <td>{localStorage.getItem("userPhone")}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
