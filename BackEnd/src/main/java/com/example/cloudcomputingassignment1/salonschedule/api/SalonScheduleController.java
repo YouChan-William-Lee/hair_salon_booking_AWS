@@ -1,18 +1,17 @@
 package com.example.cloudcomputingassignment1.salonschedule.api;
 
 import com.example.cloudcomputingassignment1.salonschedule.app.SalonScheduleAppService;
+import com.example.cloudcomputingassignment1.salonschedule.domain.entity.SalonSchedule;
 import com.example.cloudcomputingassignment1.salonschedule.representation.SalonScheduleResponse;
+import com.example.cloudcomputingassignment1.salonschedule.representation.SalonScheduleRequest;
+import com.example.cloudcomputingassignment1.staff.domain.entity.Staff;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 @RestController
@@ -32,4 +31,14 @@ public class SalonScheduleController {
         return new ResponseEntity<>(salonScheduleAppService.findAllByMonth(date), HttpStatus.OK);
     }
 
+    @PostMapping("/save")
+    public ResponseEntity<?> save(@RequestBody SalonScheduleRequest request) {
+        List<SalonSchedule> salonSchedule = salonScheduleAppService.findSalonScheduleByStaffEmail(request.getStaffEmail());
+        if (salonSchedule.size() == 0) {
+            Long newStaffId = salonScheduleAppService.findLastStaffId() + 1;
+            request.setStaffId(newStaffId);
+            salonScheduleAppService.save(request);
+        }
+        return new ResponseEntity<>(request, HttpStatus.OK);
+    }
 }

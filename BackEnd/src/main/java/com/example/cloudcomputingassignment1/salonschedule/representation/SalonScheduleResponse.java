@@ -32,8 +32,8 @@ public class SalonScheduleResponse {
     private List<LocalDateTime> bookingDateTimes;
 
     @Builder(access = AccessLevel.PRIVATE)
-    private SalonScheduleResponse(Long staffId, String staffName, String staffEmail, Long scheduleType, List<HairCutType> hairCutTypes,
-                                  List<WorkingPeriod> workingPeriods, List<LocalDateTime> bookingDateTimes) {
+    private SalonScheduleResponse(Long staffId, String staffName, String staffEmail, Long scheduleType,
+                                  List<HairCutType> hairCutTypes, List<WorkingPeriod> workingPeriods, List<LocalDateTime> bookingDateTimes) {
         this.staffId = staffId;
         this.staffName = staffName;
         this.staffEmail = staffEmail;

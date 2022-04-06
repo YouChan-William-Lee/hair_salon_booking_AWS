@@ -47,7 +47,16 @@ class Header extends Component {
                             <li className="nav-item">
                                 {this.state.isUserLoggedIn && (
                                     <a className="navbar-brand" href="/profile">
-                                        <img src={profileImage} width="50" height="50" className="rounded-circle" alt="profile"></img>
+                                        <img src={profileImage} width="50" height="50" className="rounded-circle" alt="profile" />
+                                    </a>)}
+                            </li>
+                        </ul>
+
+                        <ul className="nav navbar-nav pull-sm-left">
+                            <li className="nav-item">
+                                {this.state.isUserLoggedIn && (
+                                    <a className="navbar-brand" href="/profile">
+                                        {localStorage.getItem("userName")}
                                     </a>)}
                             </li>
                         </ul>

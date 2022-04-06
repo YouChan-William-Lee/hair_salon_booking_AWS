@@ -5,6 +5,7 @@ import com.example.cloudcomputingassignment1.salonbooking.domain.infra.SalonBook
 import com.example.cloudcomputingassignment1.salonbooking.domain.support.BookingDateSearch;
 import com.example.cloudcomputingassignment1.salonschedule.domain.entity.SalonSchedule;
 import com.example.cloudcomputingassignment1.salonschedule.domain.infra.SalonScheduleQueryService;
+import com.example.cloudcomputingassignment1.salonschedule.representation.SalonScheduleRequest;
 import com.example.cloudcomputingassignment1.salonschedule.representation.SalonScheduleResponse;
 import org.springframework.stereotype.Service;
 
@@ -40,4 +41,15 @@ public class SalonScheduleAppService {
                 .collect(Collectors.groupingBy(SalonBooking::getStaffId));
     }
 
+    public List<SalonSchedule> findSalonScheduleByStaffEmail(String staffEmail) {
+        return salonScheduleQueryService.findSalonScheduleByStaffEmail(staffEmail);
+    }
+
+    public void save(SalonScheduleRequest request) {
+        salonScheduleQueryService.save(request);
+    }
+
+    public Long findLastStaffId() {
+        return salonScheduleQueryService.findLastStaffId();
+    }
 }

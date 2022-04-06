@@ -21,12 +21,11 @@ class Admin extends Component {
             <div>
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-12">
-                            <h1 className="display-4 text-center">Staff</h1>
-                            <br />
-                            <br />
-                            <table className="table align-center text-center w-100" align="center">
-                                <thead>
+                        <h1 className="display-4 text-center">Staff</h1>
+                        <br />
+                        <br />
+                        <table className="table align-center text-center w-100" align="center">
+                            <thead>
                                 <tr>
                                     <th scope="col">Id</th>
                                     <th scope="col">Email</th>
@@ -34,25 +33,24 @@ class Admin extends Component {
                                     <th scope="col">Phone Number</th>
                                     <th scope="col">Role</th>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                {this.state.allStaff.map(staff => (
-                                    <tr key={staff.id}>
-                                        <td key={1}>{staff.id}</td>
-                                        <td key={2}>{staff.staffEmail}</td>
-                                        <td key={3}>{staff.staffName}</td>
-                                        <td key={4}>{staff.phoneNumber}</td>
-                                        <td key={5}>{staff.staffRole}</td>
-                                    </tr>))}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="d-flex justify-content-center">
-                            <Link to="/addstaff"
-                                  className="btn btn-dark btn-lg active">
-                                Add Staff
-                            </Link>
-                        </div>
+                            </thead>
+                            <tbody>
+                            {this.state.allStaff.map(staff => (
+                                <tr key={staff.id}>
+                                    <td key={1}>{staff.id}</td>
+                                    <td key={2}>{staff.staffEmail}</td>
+                                    <td key={3}>{staff.staffName}</td>
+                                    <td key={4}>{staff.phoneNumber}</td>
+                                    <td key={5}>{staff.staffRole}</td>
+                                </tr>))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        <Link to="/addstaff"
+                              className="btn btn-dark btn-lg active">
+                            Add Staff
+                        </Link>
                     </div>
                 </div>
             </div>
