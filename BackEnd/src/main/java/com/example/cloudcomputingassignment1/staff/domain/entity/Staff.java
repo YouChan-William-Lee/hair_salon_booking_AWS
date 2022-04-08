@@ -19,6 +19,9 @@ public class Staff {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "staff_id", unique = true)
+    private Long staffId;
+
     @Column(name = "staff_email", unique = true)
     private String staffEmail;
 
@@ -33,8 +36,9 @@ public class Staff {
     private StaffRole staffRole;
 
     @Builder(access = AccessLevel.PRIVATE)
-    private Staff(Long id, String staffEmail, String phoneNumber, String staffName, StaffRole staffRole) {
+    private Staff(Long id, Long staffId, String staffEmail, String phoneNumber, String staffName, StaffRole staffRole) {
         this.id = id;
+        this.staffId = staffId;
         this.staffEmail = staffEmail;
         this.phoneNumber = phoneNumber;
         this.staffName = staffName;
@@ -43,6 +47,7 @@ public class Staff {
 
     public static Staff of(StaffRequest request) {
         return Staff.builder()
+                .staffId(request.getStaffId())
                 .staffEmail(request.getStaffEmail())
                 .phoneNumber(request.getPhoneNumber())
                 .staffName(request.getStaffName())

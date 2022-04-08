@@ -4,13 +4,11 @@ import com.example.cloudcomputingassignment1.salonschedule.app.SalonScheduleAppS
 import com.example.cloudcomputingassignment1.salonschedule.domain.entity.SalonSchedule;
 import com.example.cloudcomputingassignment1.salonschedule.representation.SalonScheduleResponse;
 import com.example.cloudcomputingassignment1.salonschedule.representation.SalonScheduleRequest;
-import com.example.cloudcomputingassignment1.staff.domain.entity.Staff;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 

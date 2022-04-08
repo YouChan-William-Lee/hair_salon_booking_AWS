@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { createStaff, createSalonSchedule } from "../../actions/staffActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import Admin from "./Admin"
 
 class AddStaff extends Component {
     constructor() {
@@ -46,6 +47,7 @@ class AddStaff extends Component {
         };
         this.props.createStaff(newStaff);
         this.props.createSalonSchedule(newSalonSchedule);
+        localStorage.removeItem("refresh_AddStaff");
         window.location.href = "/admin";
     }
 

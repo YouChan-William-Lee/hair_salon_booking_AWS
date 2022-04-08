@@ -19,7 +19,7 @@ public class SalonBookingController {
         this.salonBookingAppService = salonBookingAppService;
     }
 
-    @PostMapping("")
+    @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody SalonBookingRequest request) {
         salonBookingAppService.save(request);
         return new ResponseEntity<>(request, HttpStatus.OK);

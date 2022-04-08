@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import MENS_HAIR_CUT from "../../images/MENS_HAIR_CUT.jpg"
-import MENS_PERM from "../../images/MENS_PERM.jpg"
-import WOMENS_HAIR_CUT from "../../images/WOMENS_HAIR_CUT.jpg"
-import WOMENS_PERM from "../../images/WOMENS_PERM.jpg"
-import TREATMENT from "../../images/TREATMENT.jpg"
 import "../../styleSheets/servicePage.css"
+
+let MENS_HAIR_CUT = "https://whs-service-bucket.s3.amazonaws.com/MENS_HAIR_CUT.jpg"
+let MENS_PERM = "https://whs-service-bucket.s3.amazonaws.com/MENS_PERM.jpg"
+let WOMENS_HAIR_CUT = "https://whs-service-bucket.s3.amazonaws.com/WOMENS_HAIR_CUT.jpg"
+let WOMENS_PERM = "https://whs-service-bucket.s3.amazonaws.com/WOMENS_PERM.jpg"
+let TREATMENT = "https://whs-service-bucket.s3.amazonaws.com/TREATMENT.jpg"
 
 class ServicePage extends Component {
     render() {

@@ -13,7 +13,6 @@ public class SalonBookingRequest {
     private Long staffId;
     private String staffName;
     private String staffEmail;
-    private Long customerId;
     private String customerName;
     private String customerEmail;
     private HairCutType hairCutType;

@@ -21,19 +21,12 @@ public class StaffController {
     @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody StaffRequest request) {
         Staff staff = staffAppService.findStaffByStaffEmail(request.getStaffEmail());
-        if (staff == null)
+        if (staff == null) {
+            Long staffId = staffAppService.findLastStaffId() + 1;
+            request.setStaffId(staffId);
             staffAppService.save(request);
+        }
         return new ResponseEntity<>(request, HttpStatus.OK);
-    }
-
-    @GetMapping("/check/{staffemail}")
-    public ResponseEntity<?> checkAdmin(@PathVariable(value = "staffemail") String staffemail) {
-        Staff staff = staffAppService.checkAdmin(staffemail, StaffRole.ADMIN);
-
-        if (staff == null)
-            return new ResponseEntity<>(false, HttpStatus.OK);
-        else
-            return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
     @GetMapping("/allstaff")

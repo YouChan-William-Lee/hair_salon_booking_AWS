@@ -6,27 +6,11 @@ server:
       charset: UTF-8
       enabled: true
       force: true
-
 spring:
-  flyway:
-    enabled: true
-    validateOnMigrate: false
-    baselineOnMigrate: true
-    encoding: UTF-8
-    username: sa
-    locations: filesystem:BackEnd/db/migration
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-      settings:
-        trace: false
-        web-allow-others: true
   datasource:
-    url: jdbc:h2:mem:salondb
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://whs-database.cvlzvh6b6bzg.us-east-1.rds.amazonaws.com:3306/whs_database
+    username: admin
+    password: Cloudcomputing!
   jpa:
     hibernate:
       ddl-auto: none
@@ -36,8 +20,22 @@ spring:
         format_sql: true
     logging.level:
       org.hibernate.SQL: debug
+  flyway:
+    enabled: false
+    validateOnMigrate: false
+    baselineOnMigrate: true
+    encoding: UTF-8
+    username: sa
+    locations: filesystem:BackEnd/db/migration
+  h2:
+    console:
+      enabled: false
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: true
 logging:
-  level:
-    org.springframework: debug
-    org.hibernate.SQL: info
-    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    level:
+      org.springframework: debug
+      org.hibernate.SQL: info
+      org.hibernate.type.descriptor.sql.BasicBinder: trace

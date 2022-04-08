@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class StaffRequest {
+    private Long staffId;
     private String staffEmail;
     private String phoneNumber;
     private String staffName;

@@ -6,16 +6,24 @@ class Admin extends Component {
         super();
 
         this.state = {
-            allStaff: []
+            allStaff: [],
+            test: []
         };
     }
 
     componentDidMount() {
-        if (localStorage.getItem("userAdmin") === "false")
+        if (localStorage.getItem("userAdmin") === "false" || localStorage.getItem("userAdmin") === null)
             window.location.href = "/";
-        else
-            fetch("http://localhost:8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
+        fetch("http://localhost:8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
     }
+
+    componentDidUpdate() {
+        if (localStorage.getItem("refresh_AddStaff") === null) {
+            localStorage.setItem("refresh_AddStaff", "Done");
+            fetch("http://localhost:8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ test: result }) });
+        }
+    }
+
     render() {
         return (
             <div>
@@ -37,7 +45,7 @@ class Admin extends Component {
                             <tbody>
                             {this.state.allStaff.map(staff => (
                                 <tr key={staff.id}>
-                                    <td key={1}>{staff.id}</td>
+                                    <td key={1}>{staff.staffId}</td>
                                     <td key={2}>{staff.staffEmail}</td>
                                     <td key={3}>{staff.staffName}</td>
                                     <td key={4}>{staff.phoneNumber}</td>

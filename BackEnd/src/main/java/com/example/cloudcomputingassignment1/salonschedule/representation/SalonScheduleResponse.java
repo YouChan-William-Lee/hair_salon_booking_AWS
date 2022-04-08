@@ -55,7 +55,6 @@ public class SalonScheduleResponse {
                         staffName = entry.getValue().get(0).getStaffName();
                         staffEmail = entry.getValue().get(0).getStaffEmail();
                         scheduleType = entry.getValue().get(0).getScheduleType();
-                        System.out.println(scheduleType);
                     }
                     return SalonScheduleResponse.builder()
                             .staffId(entry.getKey())

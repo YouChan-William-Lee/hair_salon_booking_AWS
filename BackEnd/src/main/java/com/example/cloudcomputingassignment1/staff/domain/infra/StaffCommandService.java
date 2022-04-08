@@ -32,8 +32,7 @@ public class StaffCommandService {
         return staff;
     }
 
-    public Staff checkAdmin(String staffEmail, StaffRole staffRole) {
-        System.out.println("TEST checkAdmin function here" + staffEmail + staffRole);
-        return repository.findAdminStaffByStaffEmail(staffEmail, staffRole);
+    public Long findLastStaffId() {
+        return repository.findLastStaffId();
     }
 }

@@ -34,8 +34,7 @@ class BookingPageTime extends Component {
         const salonBooking = {
             staffId: this.state.selectedDesignerId,
             staffName: this.props.selectedDesigner,
-            staffEmail: this.props.allSchedules[this.state.selectedDesignerId - 1].staffEmail,
-            customerId: 1,
+            staffEmail: this.props.allSchedules[this.state.selectedDesignerId - 2].staffEmail,
             customerName: localStorage.getItem("userName"),
             customerEmail: localStorage.getItem("userEmail"),
             hairCutType: this.props.selectedService,
@@ -56,7 +55,7 @@ class BookingPageTime extends Component {
         //Firstly, find the designer's staffId
         for (var i = 0; i < this.props.allSchedules.length; i++) {
             if (this.props.selectedDesigner === this.props.allSchedules[i].staffName) {
-                this.state.selectedDesignerId = i + 1;
+                this.state.selectedDesignerId = i + 2;
             }
         }
         var staffId = this.state.selectedDesignerId
@@ -65,9 +64,9 @@ class BookingPageTime extends Component {
         var bookingTime
         var bookedTimes = [];
         console.log(this.props)
-        for (var j = 0; j < this.props.allSchedules[staffId - 1].bookingDateTimes.length; j++) {
-            if (this.props.allSchedules[staffId - 1].bookingDateTimes[j].includes(this.props.selectedYearMonthDate)) {
-                bookingTime = this.props.allSchedules[staffId - 1].bookingDateTimes[j];
+        for (var j = 0; j < this.props.allSchedules[staffId - 2].bookingDateTimes.length; j++) {
+            if (this.props.allSchedules[staffId - 2].bookingDateTimes[j].includes(this.props.selectedYearMonthDate)) {
+                bookingTime = this.props.allSchedules[staffId - 2].bookingDateTimes[j];
                 bookedTimes.push(bookingTime.substring(bookingTime.indexOf(' ') + 1))
             }
         }

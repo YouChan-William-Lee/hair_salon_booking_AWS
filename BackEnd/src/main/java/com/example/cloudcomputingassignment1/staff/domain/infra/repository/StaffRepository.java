@@ -11,6 +11,6 @@ public interface StaffRepository extends JpaRepository<Staff, Long> {
     @Query("SELECT s FROM Staff s WHERE s.staffEmail = ?1")
     Staff findStaffByStaffEmail(String staffEmail);
 
-    @Query("SELECT s FROM Staff s WHERE s.staffEmail = ?1 and s.staffRole = ?2")
-    Staff findAdminStaffByStaffEmail(String staffEmail, StaffRole staffRole);
+    @Query("SELECT s.staffId FROM Staff s WHERE s.id=(SELECT MAX(s.id) FROM Staff s)")
+    Long findLastStaffId();
 }

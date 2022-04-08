@@ -44,9 +44,6 @@ public class SalonBooking {
     @Column(name = "staff_email")
     private String staffEmail;
 
-    @Column(name = "customer_id")
-    private Long customerId;
-
     @Column(name = "customer_name")
     private String customerName;
 
@@ -73,12 +70,11 @@ public class SalonBooking {
     private LocalDateTime lastModifiedDate;
 
     @Builder(access = AccessLevel.PRIVATE)
-    private SalonBooking(Long staffId, Long customerId, HairCutType hairCutType, String staffName,
-                         String staffEmail, String customerName, String customerEmail, LocalDateTime bookingDateTime,
+    private SalonBooking(Long staffId, HairCutType hairCutType, String staffName, String staffEmail,
+                         String customerName, String customerEmail, LocalDateTime bookingDateTime,
                          LocalDate bookingDate, LocalTime bookingTime) {
         this.staffId = staffId;
         this.staffName = staffName;
-        this.customerId = customerId;
         this.staffEmail = staffEmail;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
@@ -93,7 +89,6 @@ public class SalonBooking {
                 .staffId(request.getStaffId())
                 .staffName(request.getStaffName())
                 .staffEmail(request.getStaffEmail())
-                .customerId(request.getCustomerId())
                 .customerName(request.getCustomerName())
                 .customerEmail(request.getCustomerEmail())
                 .hairCutType(request.getHairCutType())

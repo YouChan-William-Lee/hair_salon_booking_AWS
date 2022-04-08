@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import profileImage from '../../images/profileImage.png';
-import jwt_decode from "jwt-decode";
-import { Amplify, Auth } from "aws-amplify";
-import { AmplifySignOut } from "@aws-amplify/ui-react";
+import { Amplify } from "aws-amplify";
 import awsconfig from "../../configs/awsconfig";
 
 Amplify.configure(awsconfig)
+
+let profileImage = "https://whs-service-bucket.s3.amazonaws.com/profileImage.png"
 
 class Header extends Component {
     constructor() {
@@ -30,7 +29,6 @@ class Header extends Component {
     componentDidMount() {
         if (localStorage.getItem("userName")) {
             this.setState({ isUserLoggedIn: true })
-            console.log(localStorage.getItem("userAdmin"));
             if (localStorage.getItem("userAdmin") === "true") {
                 this.setState({ isUserAdmin: true })
             }

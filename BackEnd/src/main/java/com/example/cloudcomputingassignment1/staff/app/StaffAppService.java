@@ -29,7 +29,7 @@ public class StaffAppService {
         return staffCommandService.getAllStaff();
     }
 
-    public Staff checkAdmin(String staffEmail, StaffRole staffRole) {
-        return staffCommandService.checkAdmin(staffEmail, staffRole);
+    public Long findLastStaffId() {
+        return staffCommandService.findLastStaffId();
     }
 }

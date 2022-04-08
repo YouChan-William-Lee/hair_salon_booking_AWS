@@ -1,10 +1,11 @@
 import React, { Component } from "react"
-import mainImage from "../../images/mainImage.jpg";
 import Amplify from "aws-amplify";
-import { AmplifySignIn, AmplifyAuthenticator } from "@aws-amplify/ui-react";
 import awsconfig from "../../configs/awsconfig";
 
 Amplify.configure(awsconfig)
+
+let mainImage = "https://whs-service-bucket.s3.amazonaws.com/mainImage.jpg"
+
 
 class Landing extends Component {
     constructor() {
