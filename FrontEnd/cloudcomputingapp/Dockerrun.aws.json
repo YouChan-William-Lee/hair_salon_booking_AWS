@@ -1,0 +1,32 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "whs-app-backend",
+      "image": "259728507605.dkr.ecr.us-east-1.amazonaws.com/whs-app-backend:latest",
+      "hostname": "whs-app-backend",
+      "essential": true,
+      "memory": 1024,
+      "portMappings": [
+        {
+          "hostPort": 8080,
+          "containerPort": 8080
+        }
+      ]
+    },
+    {
+      "name": "whs-app-frontend",
+      "image": "259728507605.dkr.ecr.us-east-1.amazonaws.com/whs-app-frontend:latest",
+      "hostname": "whs-app-frontend",
+      "essential": true,
+      "memory": 1024,
+      "portMappings": [
+        {
+          "hostPort": 3000,
+          "containerPort": 3000
+        }
+      ],
+      "links": ["whs-app-backend"]
+    }
+  ]
+}

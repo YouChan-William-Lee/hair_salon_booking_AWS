@@ -25,7 +25,7 @@ class BookingPage extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8080/salon/schedule").then((response) => response.json()).then(result => {
+        fetch("http://ec2-54-162-125-71.compute-1.amazonaws.com:8080/salon/schedule").then((response) => response.json()).then(result => {
             this.setState({allSchedules: result})
         });
         if (localStorage.getItem("userName")) {
