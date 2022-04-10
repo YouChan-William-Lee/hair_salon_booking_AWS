@@ -63,7 +63,6 @@ class BookingPageTime extends Component {
         // Secondly, find the times already taken on the designer
         var bookingTime
         var bookedTimes = [];
-        console.log(this.props)
         for (var j = 0; j < this.props.allSchedules[staffId - 2].bookingDateTimes.length; j++) {
             if (this.props.allSchedules[staffId - 2].bookingDateTimes[j].includes(this.props.selectedYearMonthDate)) {
                 bookingTime = this.props.allSchedules[staffId - 2].bookingDateTimes[j];

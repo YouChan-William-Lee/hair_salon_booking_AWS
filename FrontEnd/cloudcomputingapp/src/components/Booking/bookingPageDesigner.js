@@ -35,7 +35,6 @@ class BookingPageDesigner extends Component {
         for (var i = 0; i < this.props.allSchedules.length; i++) {
             // Firstly check whether the designer does the selected service
             if (this.props.allSchedules[i].hairCutTypes.includes(this.props.selectedService)) {
-                console.log(this.props.allSchedules[i].staffName)
                 for (var j = 0; j < this.props.allSchedules[i].workingPeriods.length; j++) {
                     // Secondly check whether the designer works on the selected day
                     if (this.props.allSchedules[i].workingPeriods[j].workingWeek === this.props.selectedDay) {
