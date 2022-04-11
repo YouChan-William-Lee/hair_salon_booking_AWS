@@ -55,7 +55,7 @@ class AddStaff extends Component {
         if (localStorage.getItem("userAdmin") !== "true")
             window.location.href = "/";
         else
-            fetch("http://ec2-54-162-125-71.compute-1.amazonaws.com:8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
+            fetch(process.env.REACT_APP_ADDRESS + ":8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
     }
 
     render() {

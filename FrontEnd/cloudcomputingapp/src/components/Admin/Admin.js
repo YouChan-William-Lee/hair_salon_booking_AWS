@@ -14,13 +14,13 @@ class Admin extends Component {
     componentDidMount() {
         if (localStorage.getItem("userAdmin") === "false" || localStorage.getItem("userAdmin") === null)
             window.location.href = "/";
-        fetch("http://ec2-54-162-125-71.compute-1.amazonaws.com:8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
+        fetch(process.env.REACT_APP_ADDRESS + ":8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
     }
 
     componentDidUpdate() {
         if (localStorage.getItem("refresh_AddStaff") === null) {
             localStorage.setItem("refresh_AddStaff", "Done");
-            fetch("http://ec2-54-162-125-71.compute-1.amazonaws.com:8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ test: result }) });
+            fetch(process.env.REACT_APP_ADDRESS + ":8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ test: result }) });
         }
     }
 

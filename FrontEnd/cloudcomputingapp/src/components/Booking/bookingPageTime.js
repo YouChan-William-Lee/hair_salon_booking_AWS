@@ -5,6 +5,15 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import BookingPopUp from "../Booking/bookingPopUp";
 
+const AWS = require('aws-sdk');
+
+AWS.config.update({
+    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+    sessionToken: process.env.REACT_APP_AWS_SESSION_TOKEN,
+    region: process.env.REACT_APP_AWS_REGION
+});
+
 class BookingPageTime extends Component {
     constructor() {
         super();
@@ -42,7 +51,15 @@ class BookingPageTime extends Component {
             bookingDate: (new Date()).getFullYear()+"-"+String((new Date()).getMonth()+1).padStart(2,"0")+"-"+String((new Date()).getDate()).padStart(2,"0"),
             bookingTime: this.state.selectedTime
         }
-        this.props.createBooking(salonBooking)
+
+        var params = {
+            Message: 'Your booking is confirmed with ' + this.props.selectedDesigner + ' at ' + this.props.selectedYearMonthDate + ' ' + this.state.selectedTime,
+            PhoneNumber: localStorage.getItem("userPhone")
+        };
+
+        console.log(params.Message, params.PhoneNumber);
+        this.props.createBooking(salonBooking);
+        const smsRunPromise = new AWS.SNS().publish(params).promise();
     }
 
     componentDidUpdate() {
