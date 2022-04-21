@@ -15,3 +15,41 @@ export const createBooking = (salonBooking) => async dispatch => {
         });
     }
 }
+
+export const bookingConfirmationCustomer = (bookingInfo) => async dispatch => {
+    try {
+        const res = await axios({
+            method: "POST",
+            headers: {"Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                "Access-Control_allow_headers": "Origin, X-Requested-With, Content-Type, Accept",
+                "X-Requested-With": "XMLHttpRequest"},
+            url: "https://cors-anywhere.herokuapp.com/https://xgb2ocvcej.execute-api.us-east-1.amazonaws.com/whs_booking/whs",
+            data: bookingInfo
+        });
+    } catch (err) {
+        dispatch({
+            type: BOOKING_ERROR,
+            payload: err.response.data
+        });
+    }
+}
+
+export const bookingConfirmationStaff = (bookingInfo) => async dispatch => {
+    try {
+        const res = await axios({
+            method: "POST",
+            headers: {"Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                "Access-Control_allow_headers": "Origin, X-Requested-With, Content-Type, Accept",
+                "X-Requested-With": "XMLHttpRequest"},
+            url: "https://cors-anywhere.herokuapp.com/https://xgb2ocvcej.execute-api.us-east-1.amazonaws.com/whs_booking/whs",
+            data: bookingInfo
+        });
+    } catch (err) {
+        dispatch({
+            type: BOOKING_ERROR,
+            payload: err.response.data
+        });
+    }
+}

@@ -3,6 +3,7 @@ import { createStaff, createSalonSchedule } from "../../actions/staffActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Admin from "./Admin"
+import "../../styleSheets/adminPage.css"
 
 class AddStaff extends Component {
     constructor() {
@@ -13,7 +14,8 @@ class AddStaff extends Component {
             staffName: '',
             phoneNumber: '',
             hairCutType: 1,
-            scheduleType: 1
+            scheduleType: 1,
+            allStaff: []
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -37,6 +39,7 @@ class AddStaff extends Component {
         const newSalonSchedule = {
             staffId: 1,
             staffName: this.state.staffName,
+            staffPhoneNumber: this.state.phoneNumber,
             staffEmail: this.state.staffEmail,
             hairCutType: this.state.hairCutType,
             scheduleType: parseInt(this.state.scheduleType),
@@ -64,11 +67,8 @@ class AddStaff extends Component {
                 <div className="container">
                     <div className="row">
                         <h1 className="display-4 text-center">Add Staff</h1>
-                        <br />
-                        <h1 />
-                        <br />
-                        <h1 />
-                        <br />
+                    </div>
+                    <div className="row my-5 d-flex justify-content-center">
                         <form onSubmit={this.onSubmit.bind(this)}>
                             <table className="table align-center text-center w-50" align="center">
                                 <thead>

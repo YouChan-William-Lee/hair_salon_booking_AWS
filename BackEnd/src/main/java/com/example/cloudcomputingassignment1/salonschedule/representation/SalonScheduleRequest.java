@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 public class SalonScheduleRequest {
     private Long staffId;
     private String staffName;
+    private String staffPhoneNumber;
     private String staffEmail;
     private Long hairCutType;
     private Long scheduleType;

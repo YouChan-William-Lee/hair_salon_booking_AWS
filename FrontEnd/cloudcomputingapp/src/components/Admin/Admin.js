@@ -6,21 +6,22 @@ class Admin extends Component {
         super();
 
         this.state = {
-            allStaff: [],
-            test: []
+            allStaff: []
         };
     }
 
     componentDidMount() {
         if (localStorage.getItem("userAdmin") === "false" || localStorage.getItem("userAdmin") === null)
             window.location.href = "/";
+        if (localStorage.getItem("refresh_AddStaff") === "Done")
+            localStorage.removeItem("refresh_AddStaff");
         fetch(process.env.REACT_APP_ADDRESS + ":8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
     }
 
     componentDidUpdate() {
         if (localStorage.getItem("refresh_AddStaff") === null) {
             localStorage.setItem("refresh_AddStaff", "Done");
-            fetch(process.env.REACT_APP_ADDRESS + ":8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ test: result }) });
+            fetch(process.env.REACT_APP_ADDRESS + ":8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
         }
     }
 
@@ -30,9 +31,7 @@ class Admin extends Component {
                 <div className="container">
                     <div className="row">
                         <h1 className="display-4 text-center">Staff</h1>
-                        <br />
-                        <br />
-                        <table className="table align-center text-center w-100" align="center">
+                        <table className="table align-center text-center w-100 my-5" align="center">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>

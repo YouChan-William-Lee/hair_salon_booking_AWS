@@ -38,6 +38,9 @@ public class SalonSchedule  {
     @Column(name = "staff_name")
     private String staffName;
 
+    @Column(name = "staff_phone_number")
+    private String staffPhoneNumber;
+
     @Column(name = "staff_email")
     private String staffEmail;
 
@@ -60,10 +63,11 @@ public class SalonSchedule  {
     private LocalDateTime lastModifiedDate;
 
     @Builder(access = AccessLevel.PRIVATE)
-    public SalonSchedule(Long id, Long staffId, String staffName, String staffEmail, Long hairCutType, Long scheduleType, DayOfWeek dayOfTheWeek, boolean isHoliday, LocalDateTime createdDate, LocalDateTime lastModifiedDate) {
+    public SalonSchedule(Long id, Long staffId, String staffName, String staffPhoneNumber, String staffEmail, Long hairCutType, Long scheduleType, DayOfWeek dayOfTheWeek, boolean isHoliday, LocalDateTime createdDate, LocalDateTime lastModifiedDate) {
         this.id = id;
         this.staffId = staffId;
         this.staffName = staffName;
+        this.staffPhoneNumber = staffPhoneNumber;
         this.staffEmail = staffEmail;
         this.hairCutType = hairCutType;
         this.scheduleType = scheduleType;
@@ -77,6 +81,7 @@ public class SalonSchedule  {
         return SalonSchedule.builder()
                 .staffId(request.getStaffId())
                 .staffName(request.getStaffName())
+                .staffPhoneNumber(request.getStaffPhoneNumber())
                 .staffEmail(request.getStaffEmail())
                 .hairCutType(request.getHairCutType())
                 .scheduleType(request.getScheduleType())

@@ -24,6 +24,7 @@ public class SalonScheduleResponse {
 
     private Long staffId;
     private String staffName;
+    private String staffPhoneNumber;
     private String staffEmail;
     private Long scheduleType;
     private List<HairCutType> hairCutTypes;
@@ -32,10 +33,11 @@ public class SalonScheduleResponse {
     private List<LocalDateTime> bookingDateTimes;
 
     @Builder(access = AccessLevel.PRIVATE)
-    private SalonScheduleResponse(Long staffId, String staffName, String staffEmail, Long scheduleType,
+    private SalonScheduleResponse(Long staffId, String staffName, String staffPhoneNumber, String staffEmail, Long scheduleType,
                                   List<HairCutType> hairCutTypes, List<WorkingPeriod> workingPeriods, List<LocalDateTime> bookingDateTimes) {
         this.staffId = staffId;
         this.staffName = staffName;
+        this.staffPhoneNumber = staffPhoneNumber;
         this.staffEmail = staffEmail;
         this.scheduleType = scheduleType;
         this.hairCutTypes = hairCutTypes;
@@ -49,16 +51,19 @@ public class SalonScheduleResponse {
         return scheduleMap.entrySet().stream()
                 .map(entry -> {
                     String staffName = "";
+                    String staffPhoneNumber = "";
                     String staffEmail = "";
                     Long scheduleType = 0L;
                     if (entry.getValue().size() != 0) {
                         staffName = entry.getValue().get(0).getStaffName();
+                        staffPhoneNumber = entry.getValue().get(0).getStaffPhoneNumber();
                         staffEmail = entry.getValue().get(0).getStaffEmail();
                         scheduleType = entry.getValue().get(0).getScheduleType();
                     }
                     return SalonScheduleResponse.builder()
                             .staffId(entry.getKey())
                             .staffName(staffName)
+                            .staffPhoneNumber(staffPhoneNumber)
                             .staffEmail(staffEmail)
                             .scheduleType(scheduleType)
                             .hairCutTypes(filterHairCutTypes(scheduleType))

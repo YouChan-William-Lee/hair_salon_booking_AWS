@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "../../styleSheets/bookingPage.css";
-import { createBooking } from "../../actions/bookingActions";
+import { createBooking, bookingConfirmationCustomer, bookingConfirmationStaff } from "../../actions/bookingActions";
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import BookingPopUp from "../Booking/bookingPopUp";
@@ -24,7 +24,6 @@ class BookingPageTime extends Component {
             selectedTime:'',
             selectedDesigner: '',
             selectedDesignerId: '',
-            selectedDesignerEmail: '',
             selectedbookingDateTime: '',
             previousSelectedDate: '',
             allSchedules: [],
@@ -52,14 +51,19 @@ class BookingPageTime extends Component {
             bookingTime: this.state.selectedTime
         }
 
-        var params = {
+        var bookingInfoCustomer = {
             Message: 'Your booking is confirmed with ' + this.props.selectedDesigner + ' at ' + this.props.selectedYearMonthDate + ' ' + this.state.selectedTime,
             PhoneNumber: localStorage.getItem("userPhone")
         };
 
-        console.log(params.Message, params.PhoneNumber);
+        var bookingInfoStaff = {
+            Message: 'A ' + this.props.selectedService + ' booking is confirmed with ' + localStorage.getItem("userName") + ' at ' + this.props.selectedYearMonthDate + ' ' + this.state.selectedTime,
+            PhoneNumber: this.props.allSchedules[this.state.selectedDesignerId - 2].staffPhoneNumber
+        };
+
         this.props.createBooking(salonBooking);
-        const smsRunPromise = new AWS.SNS().publish(params).promise();
+        this.props.bookingConfirmationCustomer(bookingInfoCustomer);
+        this.props.bookingConfirmationCustomer(bookingInfoStaff);
     }
 
     componentDidUpdate() {
@@ -76,6 +80,7 @@ class BookingPageTime extends Component {
             }
         }
         var staffId = this.state.selectedDesignerId
+
 
         // Secondly, find the times already taken on the designer
         var bookingTime
@@ -122,12 +127,14 @@ class BookingPageTime extends Component {
     }
 }
 BookingPageTime.propTypes = {
-    createBooking: PropTypes.func.isRequired
+    createBooking: PropTypes.func.isRequired,
+    bookingConfirmationCustomer: PropTypes.func.isRequired,
+    bookingConfirmationStaff: PropTypes.func.isRequired
 }
 const mapStateProps = state => ({
     errors: state.errors
 })
 export default connect(
     mapStateProps,
-    { createBooking }
+    { createBooking, bookingConfirmationCustomer, bookingConfirmationStaff }
 )(BookingPageTime);

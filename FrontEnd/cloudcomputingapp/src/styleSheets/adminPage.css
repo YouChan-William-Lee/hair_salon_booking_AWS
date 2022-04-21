@@ -1,0 +1,18 @@
+form {
+    width: 300px;
+    margin-left: 0px;
+}
+
+select {
+    width: 300px;
+    margin: 0px;
+    text-align: center;
+}
+
+input {
+    justifyContent: center;
+    alignItems: center;
+    alignSelf: center;
+    borderColor: gray;
+    borderWidth: 1;
+}
