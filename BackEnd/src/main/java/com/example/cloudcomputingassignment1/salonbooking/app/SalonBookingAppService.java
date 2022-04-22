@@ -5,6 +5,8 @@ import com.example.cloudcomputingassignment1.salonbooking.domain.infra.SalonBook
 import com.example.cloudcomputingassignment1.salonbooking.representation.SalonBookingRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SalonBookingAppService {
 
@@ -17,5 +19,7 @@ public class SalonBookingAppService {
     public void save(SalonBookingRequest request) {
         salonBookingCommandService.save(SalonBooking.of(request));
     }
+
+    public List<SalonBooking> getBookingsByCustomerEmail(String userEmail) { return salonBookingCommandService.getBookingsByCustomerEmail(userEmail); }
 
 }

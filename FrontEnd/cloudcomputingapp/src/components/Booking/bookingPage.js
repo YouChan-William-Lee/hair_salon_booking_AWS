@@ -7,6 +7,7 @@ import awsconfig from "../../configs/awsconfig";
 import { createCustomer } from "../../actions/customerActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import "../../styleSheets/bookingPage.css"
 
 Amplify.configure(awsconfig)
 
@@ -65,12 +66,11 @@ class BookingPage extends Component {
                 <div className="calendar">
                     <div className="d-flex justify-content-center my-3">
                         <div>
-                        <DatePicker onChange={this.onChange}
-                                    value={this.state.date}
-                                    minDate={today}
-                                    maxDate={new Date(this_year, this_month, 0)} />
-                        </div>
-                        <div>
+                            <DatePicker onChange={this.onChange}
+                                        value={this.state.date}
+                                        minDate={today}
+                                        maxDate={new Date(this_year, this_month, 0)} />
+                            <br />
                             <BookingPageService selectedDate={this.state.date.getDate()}
                                                 selectedYearMonthDate={this_year+"-"+String(this_month).padStart(2,"0")+"-"+String(this.state.date.getDate()).padStart(2,"0")}
                                                 selectedDay={days[this.state.date.getDay()].toUpperCase()}

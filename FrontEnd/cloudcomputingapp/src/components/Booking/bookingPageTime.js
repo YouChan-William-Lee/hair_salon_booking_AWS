@@ -5,15 +5,6 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import BookingPopUp from "../Booking/bookingPopUp";
 
-const AWS = require('aws-sdk');
-
-AWS.config.update({
-    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
-    sessionToken: process.env.REACT_APP_AWS_SESSION_TOKEN,
-    region: process.env.REACT_APP_AWS_REGION
-});
-
 class BookingPageTime extends Component {
     constructor() {
         super();
@@ -60,9 +51,11 @@ class BookingPageTime extends Component {
             Message: 'A ' + this.props.selectedService + ' booking is confirmed with ' + localStorage.getItem("userName") + ' at ' + this.props.selectedYearMonthDate + ' ' + this.state.selectedTime,
             PhoneNumber: this.props.allSchedules[this.state.selectedDesignerId - 2].staffPhoneNumber
         };
-
+        // Save the booking detail in DB
         this.props.createBooking(salonBooking);
+        // Send booking confirmation to the customer
         this.props.bookingConfirmationCustomer(bookingInfoCustomer);
+        // Send booking confirmation to the staff
         this.props.bookingConfirmationCustomer(bookingInfoStaff);
     }
 
@@ -96,10 +89,12 @@ class BookingPageTime extends Component {
         var fullTimes = ["10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00", "16:00:00", "17:00:00", "18:00:00"];
         var availableTimes = fullTimes.filter(item => !bookedTimes.includes(item))
 
+        // Show pop up message after finishing the booking
         const PopUp = () => {
             this.setState({popUpOn: !this.state.popUpOn})
         }
 
+        // Refresh the page after finishing the booking
         const Refresh = () => {
             window.location.href = "/";
         }

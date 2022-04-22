@@ -42,7 +42,7 @@ class Admin extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                            {this.state.allStaff.map(staff => (
+                            {this.state.allStaff && this.state.allStaff.map(staff => (
                                 <tr key={staff.id}>
                                     <td key={1}>{staff.staffId}</td>
                                     <td key={2}>{staff.staffEmail}</td>

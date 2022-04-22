@@ -5,13 +5,15 @@ class Profile extends Component {
         super();
 
         this.state = {
-
+            bookings: []
         };
     }
 
     componentDidMount() {
         if (localStorage.getItem("userName") === null)
             window.location.href = "/";
+        else
+            fetch(process.env.REACT_APP_ADDRESS + `:8080/salon/booking/get/${localStorage.getItem("userEmail")}`).then((response) => response.json()).then(result => { this.setState({ bookings: result }) });
     }
 
     render() {
@@ -22,9 +24,7 @@ class Profile extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <h1 className="display-4 text-center">Profile</h1>
-                            <br/>
-                            <br/>
-                            <table className="table align-center text-center w-50" align="center">
+                            <table className="table align-center text-center w-50 my-5" align="center">
                                 <thead>
                                     <tr>
                                         <th scope="col"> </th>
@@ -48,6 +48,27 @@ class Profile extends Component {
                                         <td>Phone Number</td>
                                         <td>{localStorage.getItem("userPhone")}</td>
                                     </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                            <h1 className="display-4 text-center">Booking History</h1>
+                            <table className="table align-center text-center w-100 my-5" align="center">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Hair Cut Type</th>
+                                    <th scope="col">Staff Name</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {this.state.bookings && this.state.bookings.map(booking => (
+                                    <tr key={booking.id}>
+                                        <td key={1}>{booking.bookingDate}</td>
+                                        <td key={2}>{booking.bookingTime}</td>
+                                        <td key={3}>{booking.hairCutType}</td>
+                                        <td key={4}>{booking.staffName}</td>
+                                    </tr>))}
                                 </tbody>
                             </table>
                         </div>

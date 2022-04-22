@@ -47,3 +47,12 @@ select {
     border: 1px solid #999;
     font-size: 20px;
 }
+
+.sdp {
+    background-color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    width: 19rem;
+}
+
