@@ -1,31 +1,16 @@
 import axios from "axios";
-import { CREATE_STAFF, STAFF_ERROR, CREATE_SALON_SCHEDULE, SALON_SCHEDULE_ERROR } from "./types";
+import { CREATE_STAFF_AND_SALON_SCHEDULE, STAFF_AND_SALON_SCHEDULE_ERROR } from "./types";
 
-export const createStaff = (staff) => async dispatch => {
+export const createStaffAndSalonSchedule = (staffAndSalonSchedule) => async dispatch => {
     try {
-        const res = await axios.post("http://52.206.86.192:8080/staff/save", staff);
+        const res = await axios.post("http://52.206.86.192:8080/staff/save", staffAndSalonSchedule);
         dispatch({
-            type: CREATE_STAFF,
-            payload: { message: staff.staffName + " has been successfully saved." }
+            type: CREATE_STAFF_AND_SALON_SCHEDULE,
+            payload: { message: staffAndSalonSchedule.staffName + " has been successfully saved." }
         });
     } catch (err) {
         dispatch({
-            type: STAFF_ERROR,
-            payload: err.response.data
-        });
-    }
-}
-
-export const createSalonSchedule = (salonSchedule) => async dispatch => {
-    try {
-        const res = await axios.post("http://52.206.86.192:8080/salon/schedule/save", salonSchedule);
-        dispatch({
-            type: CREATE_SALON_SCHEDULE,
-            payload: { message: salonSchedule.staffName + " has been successfully saved." }
-        });
-    } catch (err) {
-        dispatch({
-            type: SALON_SCHEDULE_ERROR,
+            type: STAFF_AND_SALON_SCHEDULE_ERROR,
             payload: err.response.data
         });
     }

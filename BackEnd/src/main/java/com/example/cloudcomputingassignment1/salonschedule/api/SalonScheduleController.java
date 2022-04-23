@@ -28,15 +28,4 @@ public class SalonScheduleController {
                     LocalDate date) {
         return new ResponseEntity<>(salonScheduleAppService.findAllByMonth(date), HttpStatus.OK);
     }
-
-    @PostMapping("/save")
-    public ResponseEntity<?> save(@RequestBody SalonScheduleRequest request) {
-        List<SalonSchedule> salonSchedule = salonScheduleAppService.findSalonScheduleByStaffEmail(request.getStaffEmail());
-        if (salonSchedule.size() == 0) {
-            Long newStaffId = salonScheduleAppService.findLastStaffId() + 1;
-            request.setStaffId(newStaffId);
-            salonScheduleAppService.save(request);
-        }
-        return new ResponseEntity<>(request, HttpStatus.OK);
-    }
 }

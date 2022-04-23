@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { createStaff, createSalonSchedule } from "../../actions/staffActions";
+import { createStaffAndSalonSchedule } from "../../actions/staffActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Admin from "./Admin"
@@ -27,13 +27,7 @@ class AddStaff extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        const newStaff = {
-            staffEmail: this.state.staffEmail,
-            staffName: this.state.staffName,
-            phoneNumber: "+" + this.state.phoneNumber,
-            staffRole: "STAFF"
-        };
-        const newSalonSchedule = {
+        const newStaffAndSalonSchedule = {
             staffId: 1,
             staffName: this.state.staffName,
             staffPhoneNumber: "+" + this.state.phoneNumber,
@@ -46,9 +40,8 @@ class AddStaff extends Component {
             lastModifiedDate: new Date()
         };
         // Save new staff info in DB
-        this.props.createStaff(newStaff);
-        // Save new staff's schedule in DB
-        this.props.createSalonSchedule(newSalonSchedule);
+        this.props.createStaffAndSalonSchedule(newStaffAndSalonSchedule);
+
         localStorage.setItem("addStaffRefresh", "Done");
         window.location.href = "/admin";
     }
@@ -155,13 +148,12 @@ class AddStaff extends Component {
     }
 }
 AddStaff.propTypes = {
-    createStaff: PropTypes.func.isRequired,
-    createSalonSchedule: PropTypes.func.isRequired
+    createStaffAndSalonSchedule: PropTypes.func.isRequired
 }
 const mapStateProps = state => ({
     errors: state.errors
 })
 export default connect(
     mapStateProps,
-    { createStaff, createSalonSchedule }
+    { createStaffAndSalonSchedule }
 )(AddStaff);
