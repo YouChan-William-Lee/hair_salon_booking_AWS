@@ -6,22 +6,21 @@ class Admin extends Component {
         super();
 
         this.state = {
-            allStaff: []
+            allStaff: [],
+            updatedStaff: []
         };
     }
 
     componentDidMount() {
         if (localStorage.getItem("userAdmin") === "false" || localStorage.getItem("userAdmin") === null)
             window.location.href = "/";
-        if (localStorage.getItem("refresh_AddStaff") === "Done")
-            localStorage.removeItem("refresh_AddStaff");
         fetch(process.env.REACT_APP_ADDRESS + ":8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
     }
 
     componentDidUpdate() {
-        if (localStorage.getItem("refresh_AddStaff") === null) {
-            localStorage.setItem("refresh_AddStaff", "Done");
-            fetch(process.env.REACT_APP_ADDRESS + ":8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
+        if (localStorage.getItem("addStaffRefresh") === "Done") {
+            localStorage.removeItem("addStaffRefresh");
+            window.location.reload();
         }
     }
 

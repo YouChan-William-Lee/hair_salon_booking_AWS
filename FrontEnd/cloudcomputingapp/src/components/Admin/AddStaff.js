@@ -50,7 +50,7 @@ class AddStaff extends Component {
         };
         this.props.createStaff(newStaff);
         this.props.createSalonSchedule(newSalonSchedule);
-        localStorage.removeItem("refresh_AddStaff");
+        localStorage.setItem("addStaffRefresh", "Done");
         window.location.href = "/admin";
     }
 

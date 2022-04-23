@@ -8,15 +8,6 @@ let mainImage = "https://whs-service-bucket.s3.amazonaws.com/mainImage.jpg"
 
 
 class Landing extends Component {
-    constructor() {
-        super();
-
-        this.state={
-            userLogin: false,
-            userAdmin: false
-        }
-    }
-
     render() {
         return (
             <div className="landing">
