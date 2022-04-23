@@ -31,24 +31,23 @@ class AddStaff extends Component {
             staffEmail: this.state.staffEmail,
             staffName: this.state.staffName,
             phoneNumber: "+" + this.state.phoneNumber,
-            hairCutType: this.state.hairCutType,
-            scheduleType: parseInt(this.state.scheduleType),
             staffRole: "STAFF"
-
         };
         const newSalonSchedule = {
             staffId: 1,
             staffName: this.state.staffName,
-            staffPhoneNumber: this.state.phoneNumber,
+            staffPhoneNumber: "+" + this.state.phoneNumber,
             staffEmail: this.state.staffEmail,
-            hairCutType: this.state.hairCutType,
+            hairCutType: parseInt(this.state.hairCutType),
             scheduleType: parseInt(this.state.scheduleType),
             dayOfWeek: 'MONDAY',
             isHoliday: false,
             createdDate: new Date(),
             lastModifiedDate: new Date()
         };
+        // Save new staff info in DB
         this.props.createStaff(newStaff);
+        // Save new staff's schedule in DB
         this.props.createSalonSchedule(newSalonSchedule);
         localStorage.setItem("addStaffRefresh", "Done");
         window.location.href = "/admin";
@@ -58,7 +57,7 @@ class AddStaff extends Component {
         if (localStorage.getItem("userAdmin") !== "true")
             window.location.href = "/";
         else
-            fetch(process.env.REACT_APP_ADDRESS + ":8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
+            fetch("http://52.206.86.192:8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
     }
 
     render() {

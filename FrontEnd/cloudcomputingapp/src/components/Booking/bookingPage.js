@@ -26,7 +26,7 @@ class BookingPage extends Component {
     }
 
     componentDidMount() {
-        fetch(process.env.REACT_APP_ADDRESS + ":8080/salon/schedule").then((response) => response.json()).then(result => {
+        fetch("http://52.206.86.192:8080/salon/schedule").then((response) => response.json()).then(result => {
             this.setState({allSchedules: result})
         });
         if (localStorage.getItem("userName")) {

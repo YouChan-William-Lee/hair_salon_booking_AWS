@@ -29,7 +29,7 @@ public class SalonScheduleQueryService {
 
     public void save(SalonScheduleRequest request) {
         // Monday, Wednesday, Friday
-        if (request.getHairCutType().equals(1L)) {
+        if (request.getScheduleType().equals(1L)) {
             request.setDayOfWeek(DayOfWeek.MONDAY);
             request.setIsHoliday(false);
             repository.save(SalonSchedule.of(request));
@@ -52,7 +52,7 @@ public class SalonScheduleQueryService {
             request.setIsHoliday(true);
             repository.save(SalonSchedule.of(request));
         // Tuesday, Thursday, Saturday
-        } else if (request.getHairCutType().equals(2L)) {
+        } else if (request.getScheduleType().equals(2L)) {
             request.setDayOfWeek(DayOfWeek.MONDAY);
             request.setIsHoliday(true);
             repository.save(SalonSchedule.of(request));
@@ -75,7 +75,7 @@ public class SalonScheduleQueryService {
             request.setIsHoliday(true);
             repository.save(SalonSchedule.of(request));
         // Friday, Saturday, Sunday
-        } else if (request.getHairCutType().equals(3L)) {
+        } else if (request.getScheduleType().equals(3L)) {
             request.setDayOfWeek(DayOfWeek.MONDAY);
             request.setIsHoliday(true);
             repository.save(SalonSchedule.of(request));

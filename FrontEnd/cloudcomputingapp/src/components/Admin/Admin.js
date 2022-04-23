@@ -14,7 +14,7 @@ class Admin extends Component {
     componentDidMount() {
         if (localStorage.getItem("userAdmin") === "false" || localStorage.getItem("userAdmin") === null)
             window.location.href = "/";
-        fetch(process.env.REACT_APP_ADDRESS + ":8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
+        fetch("http://52.206.86.192:8080/staff/allstaff").then((response) => response.json()).then(result => { this.setState({ allStaff: result }) });
     }
 
     componentDidUpdate() {

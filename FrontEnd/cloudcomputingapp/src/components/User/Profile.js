@@ -13,7 +13,7 @@ class Profile extends Component {
         if (localStorage.getItem("userName") === null)
             window.location.href = "/";
         else
-            fetch(process.env.REACT_APP_ADDRESS + `:8080/salon/booking/get/${localStorage.getItem("userEmail")}`).then((response) => response.json()).then(result => { this.setState({ bookings: result }) });
+            fetch(`http://52.206.86.192:8080/salon/booking/get/${localStorage.getItem("userEmail")}`).then((response) => response.json()).then(result => { this.setState({ bookings: result }) });
     }
 
     render() {

@@ -54,11 +54,13 @@ public class SalonScheduleResponse {
                     String staffPhoneNumber = "";
                     String staffEmail = "";
                     Long scheduleType = 0L;
+                    Long hairCutTypes = 0L;
                     if (entry.getValue().size() != 0) {
                         staffName = entry.getValue().get(0).getStaffName();
                         staffPhoneNumber = entry.getValue().get(0).getStaffPhoneNumber();
                         staffEmail = entry.getValue().get(0).getStaffEmail();
                         scheduleType = entry.getValue().get(0).getScheduleType();
+                        hairCutTypes = entry.getValue().get(0).getHairCutType();
                     }
                     return SalonScheduleResponse.builder()
                             .staffId(entry.getKey())
@@ -66,7 +68,7 @@ public class SalonScheduleResponse {
                             .staffPhoneNumber(staffPhoneNumber)
                             .staffEmail(staffEmail)
                             .scheduleType(scheduleType)
-                            .hairCutTypes(filterHairCutTypes(scheduleType))
+                            .hairCutTypes(filterHairCutTypes(hairCutTypes))
                             .workingPeriods(WorkingPeriod.of(entry.getValue()))
                             .bookingDateTimes(filterBookingDateTime(bookingMap, entry.getKey()))
                             .build();
@@ -113,17 +115,17 @@ public class SalonScheduleResponse {
 
     }
 
-    private static List<HairCutType> filterHairCutTypes(Long scheduleType) {
+    private static List<HairCutType> filterHairCutTypes(Long hairCutTypes) {
         // If schedule Type is Mens hair and Treatment
-        if (scheduleType.equals(1L)) {
+        if (hairCutTypes.equals(1L)) {
             return Collections.unmodifiableList(Arrays.asList(HairCutType.MENS_HAIR_CUT,
                     HairCutType.MENS_PERM, HairCutType.TREATMENT));
         // If schedule Type is Womens hair and Treatment
-        } else if (scheduleType.equals(2L)) {
+        } else if (hairCutTypes.equals(2L)) {
             return Collections.unmodifiableList(Arrays.asList(HairCutType.WOMENS_HAIR_CUT,
                     HairCutType.WOMENS_PERM, HairCutType.TREATMENT));
         // If schedule Type is both Mens and Womens hair and Treatment
-        } else if (scheduleType.equals(3L)) {
+        } else if (hairCutTypes.equals(3L)) {
             return Collections.unmodifiableList(Arrays.asList(HairCutType.MENS_HAIR_CUT,
                     HairCutType.WOMENS_HAIR_CUT, HairCutType.WOMENS_PERM, HairCutType.MENS_PERM,
                     HairCutType.TREATMENT));
