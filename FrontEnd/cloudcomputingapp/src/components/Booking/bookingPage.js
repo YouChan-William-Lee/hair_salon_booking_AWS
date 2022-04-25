@@ -38,6 +38,7 @@ class BookingPage extends Component {
                 }
                 localStorage.setItem("userSavedInDb", true);
                 this.props.createCustomer(saveCustomer);
+                window.location.reload();
             }
             else if (localStorage.getItem("userEmail") === this.state.adminAccount && localStorage.getItem("refresh") === null) {
                 localStorage.setItem("refresh", "Done");
