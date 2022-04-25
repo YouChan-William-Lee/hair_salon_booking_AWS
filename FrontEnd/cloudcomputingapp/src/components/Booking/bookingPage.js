@@ -48,9 +48,7 @@ class BookingPage extends Component {
 
     render() {
         var today = new Date();
-        var this_year = today.getFullYear();
-        var this_month_index = today.getMonth();
-        var this_month = this_month_index + 1;
+        var maxDay = new Date(new Date().setDate(today.getDate() + 30));
         const days = ["Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
         return (
             <div>
@@ -69,10 +67,10 @@ class BookingPage extends Component {
                             <DatePicker onChange={this.onChange}
                                         value={this.state.date}
                                         minDate={today}
-                                        maxDate={new Date(this_year, this_month, 0)} />
+                                        maxDate={maxDay} />
                             <br />
                             <BookingPageService selectedDate={this.state.date.getDate()}
-                                                selectedYearMonthDate={this_year+"-"+String(this_month).padStart(2,"0")+"-"+String(this.state.date.getDate()).padStart(2,"0")}
+                                                selectedYearMonthDate={String(this.state.date.getFullYear())+"-"+String(this.state.date.getMonth()+1).padStart(2,"0")+"-"+String(this.state.date.getDate()).padStart(2,"0")}
                                                 selectedDay={days[this.state.date.getDay()].toUpperCase()}
                                                 allSchedules={this.state.allSchedules}
                                                 selectedService={"service"}
