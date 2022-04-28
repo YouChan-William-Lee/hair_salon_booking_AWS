@@ -20,9 +20,10 @@ public class BookingDateSearch {
 
     public static BookingDateSearch from(LocalDate date) {
         date = Objects.isNull(date) ? LocalDate.now() : date;
+        LocalDate nextMonth = date.plusMonths(1);
         return BookingDateSearch.builder()
                 .startDate(date.withDayOfMonth(1))
-                .endDate(date.withDayOfMonth(date.lengthOfMonth()))
+                .endDate(nextMonth.withDayOfMonth(nextMonth.lengthOfMonth()))
                 .build();
     }
 
